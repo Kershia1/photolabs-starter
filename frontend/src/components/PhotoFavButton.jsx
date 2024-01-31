@@ -6,8 +6,13 @@ import '../styles/PhotoFavButton.scss';
 const PhotoFavButton = () => {
   const [like, setLike] = useState(false);
 
+  // const handleClick = () => {
+  //   setLike(!like);
+  //   console.log('FavIcon clicked');
+  // }; this is not the best as it does not handle the most recent state
+
   const handleClick = () => {
-    setLike(!like);
+    setLike(prevLike => !prevLike);
     console.log('FavIcon clicked');
   };
 
