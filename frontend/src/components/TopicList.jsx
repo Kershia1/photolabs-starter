@@ -15,7 +15,7 @@ const TopicList = ({ topics }) => {
             label={topic.title}
           />
         );
-      })};
+      })}
     </div>
   );
 };
