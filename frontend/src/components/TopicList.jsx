@@ -22,12 +22,6 @@ const sampleDataForTopicList = [
 
 const TopicList = () => {
 
-  // const getTopicById = (id) => {
-  //   return sampleDataForTopicList.find((topic) => topic.id === id);
-  // };
-
-  // const topic = getTopicById("2");
-  // console.log(topic);
   return (
     <div className="top-nav-bar__topic-list">
       {sampleDataForTopicList.map((topic) => {
