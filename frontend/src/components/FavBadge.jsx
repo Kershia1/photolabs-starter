@@ -14,7 +14,7 @@ const FavBadge = ({ isFavPhotoExist }) => {
 
   return (
     <div className="fav-badge" onClick={handleClick}>
-      <FavIcon displayAlert={!!isFavPhotoExist} />
+      <FavIcon displayAlert={!!isFavPhotoExist} like={like} />
     </div>
   );
 };

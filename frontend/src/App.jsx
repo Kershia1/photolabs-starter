@@ -15,3 +15,17 @@ const App = () => {
 };
 
 export default App;
+
+//Add the global state to the App component
+
+// import React from 'react';
+// import { FavouritesProvider } from './FavouritesContext';
+// import HomeRoute from './components/HomeRoute';
+
+// function App() {
+//   return (
+//     <FavouritesProvider>
+//       <HomeRoute />
+//     </FavouritesProvider>
+//   );
+// }
