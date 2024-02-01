@@ -8,10 +8,24 @@ const sampleDataForTopicListItem = {
   label: "Nature",
 };
 
-const TopicListItem = () => {
+const TopicListItem = ({id, slug, label}) => {
+  const styledTopicListItem = {
+    lineHeight: '24px',
+    marginLeft: '24px',
+  };
+
+  const styledTopicListSpan = {
+    fontSize: '18px',
+    textDecoration: 'none',
+    fontWeight: '500',
+    color: '#2b2b2b',
+  };
+
   return (
     <div className="topic-list__item">
-      {/* Insert React */}
+      <a href={`/${slug}`} style={styledTopicListItem}>
+        <span style={styledTopicListSpan}>{label}</span>
+      </a>
     </div>
   );
 };

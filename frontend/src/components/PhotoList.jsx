@@ -64,10 +64,10 @@ const PhotoList = () => {
 
   return (
     <ul className="photo-list">
-      {sampleDataForPhotoList.map((item, index) => {
+      {sampleDataForPhotoList.map((item) => {
         return (
           <PhotoListItem
-            key={index}
+            key={item.id}
             id={item.id}
             location={item.location}
             imageSource={item.urls.regular}
@@ -81,3 +81,7 @@ const PhotoList = () => {
 };
 
 export default PhotoList;
+
+/**
+ * One small suggestion: in your PhotoList.jsx, you're using the index of the array as a key for your PhotoListItem components. While this works, it's generally recommended to use a unique identifier if one is available, like the id property in your data. This helps React optimize re-rendering and can help prevent issues if the order of items changes. So, you could change key={index} to key={item.id}.
+ */

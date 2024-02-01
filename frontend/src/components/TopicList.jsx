@@ -1,5 +1,5 @@
 import React from "react";
-
+import TopicListItem from "./TopicListItem";
 import "../styles/TopicList.scss";
 
 const sampleDataForTopicList = [
@@ -21,9 +21,23 @@ const sampleDataForTopicList = [
 ];
 
 const TopicList = () => {
+
+  const getTopicById = (id) => {
+    return sampleDataForTopicList.find((topic) => topic.id === id);
+  };
+
+  const topic = getTopicById("2");
+  console.log(topic);
   return (
     <div className="top-nav-bar__topic-list">
-      {/* Insert React */}
+      {topic && (
+        <TopicListItem
+          key={topic.id}
+          id={topic.id}
+          slug={topic.slug}
+          label={topic.label}
+        />
+      )};
     </div>
   );
 };
