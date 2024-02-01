@@ -1,6 +1,6 @@
 import React from 'react';
 import PhotoList from './components/PhotoList';
-import TopicList from 'components/TopicList';
+// import TopicList from 'components/TopicList';
 import TopNavigationBar from 'components/TopNavigationBar';
 import './App.scss';
 
@@ -10,7 +10,7 @@ const App = () => {
     <div className="App">
       {/* <div className={`App ${dark}`}></div> */}
       <TopNavigationBar/>
-      <TopicList/>
+      {/* <TopicList/> */}
       <PhotoList/>
     </div>
   );

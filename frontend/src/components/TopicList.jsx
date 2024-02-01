@@ -22,22 +22,24 @@ const sampleDataForTopicList = [
 
 const TopicList = () => {
 
-  const getTopicById = (id) => {
-    return sampleDataForTopicList.find((topic) => topic.id === id);
-  };
+  // const getTopicById = (id) => {
+  //   return sampleDataForTopicList.find((topic) => topic.id === id);
+  // };
 
-  const topic = getTopicById("2");
-  console.log(topic);
+  // const topic = getTopicById("2");
+  // console.log(topic);
   return (
     <div className="top-nav-bar__topic-list">
-      {topic && (
-        <TopicListItem
-          key={topic.id}
-          id={topic.id}
-          slug={topic.slug}
-          label={topic.label}
-        />
-      )};
+      {sampleDataForTopicList.map((topic) => {
+        return (
+          <TopicListItem
+            key={topic.id}
+            id={topic.id}
+            slug={topic.slug}
+            label={topic.title}
+          />
+        );
+      })};
     </div>
   );
 };
