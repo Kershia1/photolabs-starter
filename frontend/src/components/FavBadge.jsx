@@ -1,22 +1,38 @@
 import React from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import FavIcon from './FavIcon';
 
 import '../styles/FavBadge.scss';
 
-const FavBadge = ({ isFavPhotoExist }) => {
-  const [like, setLike] = useState(false);
-
-  const handleClick = () => {
-    setLike(prevLike => !prevLike);
-    console.log('FavBadge clicked');
-  };
+const FavBadge = ({ isFavPhotoExist, count }) => {
 
   return (
-    <div className="fav-badge" onClick={handleClick}>
-      <FavIcon displayAlert={!!isFavPhotoExist} like={like} />
+    <div className="fav-badge" >
+      <FavIcon displayAlert={!!isFavPhotoExist} selected={count} />
+      {count > 0 && <span className="fav-badge__count">{count}</span>}
     </div>
   );
 };
 
 export default FavBadge;
+
+
+/*
+//const FavBadge = ({ isFavPhotoExist, count }) => {
+//   const [like, setLike] = useState(false);
+
+//   const handleClick = () => {
+//     setLike(prevLike => !prevLike);
+//     console.log('FavBadge clicked');
+//   };
+
+//   return (
+//     <div className="fav-badge" onClick={handleClick}>
+//       <FavIcon displayAlert={!!isFavPhotoExist} like={like} />
+//     </div>
+//   );
+// };
+
+// export default FavBadge;
+
+*/
