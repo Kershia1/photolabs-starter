@@ -14,39 +14,13 @@ const HomeRoute = ({ photos, topics}) => {
 
 export default HomeRoute;
 
-//create a new file to implement global state to manage liked and favorite photos
+/*
+Implement the following changes:
+-maintain state in app to track fav photos with the useState hook
 
-// import React, { createContext, useContext, useState } from 'react';
+-at the onClick add photoId to the favourite photo array
 
-// // Create the context
-// const FavouritesContext = createContext();
+-when clicked aagain use my toogle funtion to remove from array.
 
-// // Provider component that wraps your app and makes the favs state accessible to all components
-// export const FavouritesProvider = ({children}) => {
-//     const [favourites, setFavourites] = useState([]);
-
-//     return (
-//         <FavouritesContext.Provider value={{favourites, setFavourites}}>
-//             {children}
-//         </FavouritesContext.Provider>
-//     );
-// };
-
-// // Custom hook to use the favourites state
-// export const useFavourites = () => useContext(FavouritesContext);
-
-// import React from 'react';
-// import { useFavourites } from '../FavouritesContext';
-
-// const PhotoListItem = () => {
-//     // Access the global favourites state and methods to update it
-//     const { favourites, setFavourites } = useFavourites();
-
-//     const toggleFavourite = (photoId) => {
-//         // Your logic here to add or remove a photo from favourites
-//     };
-
-//     return (
-//         // Your component's UI here
-//     );
-// };
+-somehow pass the notification to the navBar to display the number of favs. ,lenght of the array
+*/
