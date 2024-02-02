@@ -2,10 +2,10 @@ import React from 'react';
 import TopNavigationBar from 'components/TopNavigationBar';
 import PhotoList from '../components/PhotoList';
 import '../styles/HomeRoute.scss';
-import { useState } from 'react';
+import { useFavourites } from 'components/FavouritesContext';
 
 const HomeRoute = ({ photos, topics}) => {
-  const [favourites, setFavourites] = useState([]);
+  const {favourites, setFavourites} = useFavourites();
 
   const toggleFavourite = (photoId) => {
     if (favourites.includes(photoId)) {
@@ -14,9 +14,10 @@ const HomeRoute = ({ photos, topics}) => {
       setFavourites([...favourites, photoId]);
     }
   };
+
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} setFavouritesCount={favourites.lenght}/>
+      <TopNavigationBar topics={topics} favouritesCount={favourites.length}/>
       <PhotoList photos={photos} toggleFavourite={toggleFavourite} />
     </div>
   );

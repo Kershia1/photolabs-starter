@@ -14,11 +14,3 @@ const FavIcon = ({displayAlert, selected}) => {
 };
 
 export default FavIcon;
-
-// const FavIcon = ({ displayAlert, like }) => {
-//   if (like) {
-//     return <FilledHeartIcon />;
-//   } else {
-//     return <OutlinedHeartIcon />;
-//   }
-// };

@@ -1,6 +1,7 @@
 import React from "react";
 import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
+import { useFavourites } from "./FavouritesContext";
 
 const PhotoList = ({ photos, toggleFavourite, favourites}) => {
 
