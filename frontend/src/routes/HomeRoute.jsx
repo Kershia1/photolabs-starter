@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TopNavigationBar from 'components/TopNavigationBar';
 import PhotoList from '../components/PhotoList';
+import PhotoDetailsModal from './PhotoDetailsModal';
 import '../styles/HomeRoute.scss';
 import { useFavourites } from 'components/FavouritesContext';
 
 const HomeRoute = ({ photos, topics}) => {
   const {favourites, setFavourites} = useFavourites();
+  const [photoDetails, setPhotoDetails] = useState(false);
 
   const toggleFavourite = (photoId) => {
     if (favourites.includes(photoId)) {
@@ -15,23 +17,18 @@ const HomeRoute = ({ photos, topics}) => {
     }
   };
 
+  const toggleModal = () => {
+    setPhotoDetails(prevPhotoDetails => !prevPhotoDetails);
+    console.log('Modal clicked');
+  };
+
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} favouritesCount={favourites.length}/>
-      <PhotoList photos={photos} toggleFavourite={toggleFavourite} />
+      <PhotoList photos={photos} toggleFavourite={toggleFavourite} toggleModal={toggleModal}/>
+      <PhotoDetailsModal photoDetails= {photoDetails} handleClick={toggleModal}/>
     </div>
   );
 };
 
 export default HomeRoute;
-
-/*
-Implement the following changes:
--maintain state in app to track fav photos with the useState hook
-
--at the onClick add photoId to the favourite photo array
-
--when clicked aagain use my toogle funtion to remove from array.
-
--somehow pass the notification to the navBar to display the number of favs. ,lenght of the array
-*/

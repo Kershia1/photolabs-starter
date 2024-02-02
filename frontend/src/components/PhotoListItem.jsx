@@ -1,12 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState } from "react"; //array
 import "../styles/PhotoListItem.scss";
 import "../styles/PhotoFavButton.scss";
 import PhotoFavButton from "./PhotoFavButton";
-import { useFavourites } from "./FavouritesContext";
+import { useFavourites } from "./FavouritesContext"; //object
 
 //pass as props to PhotoListItem
-const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
+const PhotoListItem = ({ id, location, imageSource, username, profile, toggleModal }) => {
   //pass as props to PhotoFavButton
   const [like, setLike] = useState(false);
   const { favourites, setFavourites } = useFavourites();
@@ -21,10 +21,10 @@ const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
   };
 
   //pass as props to PhotoFavButton
-  const handleClick = () => {
-    setLike(prevLike => !prevLike);
-    console.log('FavIcon clicked');
-  };
+  // const handleClick = () => {
+  //   setLike(prevLike => !prevLike);
+  //   console.log('FavIcon clicked');
+  // };
 
   //Need to remove in-line styling
   const styledPhotoListItem = {
@@ -45,11 +45,10 @@ const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
   };
 
   return (
-    <section className="photo-list__item ">
+    <section className="photo-list__item" onClick={toggleModal}>
       <PhotoFavButton
         like={favourites.includes(id)}
         handleClick={() => toggleFavourite(id)}/>
-      {/* passing toggle fav as a prop to photofavbutton, then call within handclick NOT outside handclick */}
       <img className="photo-list__image" src={imageSource} alt={username} style={styledPhotoListItem}></img>
       <div className="photo-list__user-details"></div>
       <img src={profile} style={styledProfilePhoto} />
