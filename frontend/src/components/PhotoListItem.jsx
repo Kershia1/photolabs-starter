@@ -46,7 +46,8 @@ const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
 
   return (
     <section className="photo-list__item ">
-      <PhotoFavButton like={favourites.includes(id)}
+      <PhotoFavButton
+        like={favourites.includes(id)}
         handleClick={() => toggleFavourite(id)}/>
       {/* passing toggle fav as a prop to photofavbutton, then call within handclick NOT outside handclick */}
       <img className="photo-list__image" src={imageSource} alt={username} style={styledPhotoListItem}></img>

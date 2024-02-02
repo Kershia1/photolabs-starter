@@ -2,7 +2,7 @@ import React from "react";
 import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 
-const PhotoList = ({ photos}) => {
+const PhotoList = ({ photos, toggleFavourite, favourites}) => {
 
   return (
     <ul className="photo-list">
@@ -14,6 +14,8 @@ const PhotoList = ({ photos}) => {
             location={item.location}
             imageSource={item.urls.regular}
             username={item.user.username}
+            toggleFavourite={toggleFavourite}
+            favourites={favourites}
             profile={item.user.profile}
           />
         );
