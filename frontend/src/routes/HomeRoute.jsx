@@ -5,9 +5,8 @@ import PhotoDetailsModal from './PhotoDetailsModal';
 import '../styles/HomeRoute.scss';
 import { useFavourites } from 'components/FavouritesContext';
 
-const HomeRoute = ({ photos, topics}) => {
+const HomeRoute = ({ photos, topics,photoDetails, setPhotoDetails}) => {
   const {favourites, setFavourites} = useFavourites();
-  const [photoDetails, setPhotoDetails] = useState(false);
 
   const toggleFavourite = (photoId) => {
     if (favourites.includes(photoId)) {

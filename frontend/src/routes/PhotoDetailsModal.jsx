@@ -11,6 +11,10 @@ const PhotoDetailsModal = ({photoDetails, handleClick}) => {
     handleClick && handleClick();
   };
 
+  // const closeModal = (e) => {
+  //   e.stopPropagation();
+  // };
+
   if (!photoDetails) {
     return null;
   }
