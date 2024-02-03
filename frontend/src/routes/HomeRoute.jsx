@@ -25,7 +25,7 @@ const HomeRoute = ({ photos, topics,photoDetails, setPhotoDetails}) => {
     <div className="home-route">
       <TopNavigationBar topics={topics} favouritesCount={favourites.length}/>
       <PhotoList photos={photos} toggleFavourite={toggleFavourite} toggleModal={toggleModal}/>
-      <PhotoDetailsModal photoDetails= {photoDetails} handleClick={toggleModal}/>
+      <PhotoDetailsModal photoDetails= {photoDetails} setPhotoDetails={setPhotoDetails} handleClick={toggleModal}/>
     </div>
   );
 };

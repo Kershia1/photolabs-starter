@@ -1,19 +1,17 @@
 import React from 'react';
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
-import { useState } from 'react';
 
-const PhotoDetailsModal = ({photoDetails, handleClick}) => {
-  // const [photoDetails, setPhotoDetails] = useState(false);
-  //handles state of clicked modal and close button
+const PhotoDetailsModal = ({photoDetails, setPhotoDetails, handleClick}) => {
 
   const toggleModal = () => {
     handleClick && handleClick();
   };
 
-  // const closeModal = (e) => {
-  //   e.stopPropagation();
-  // };
+  const closeModal = (e) => {
+    e.stopPropagation();
+    setPhotoDetails(false);
+  };
 
   if (!photoDetails) {
     return null;
@@ -22,8 +20,8 @@ const PhotoDetailsModal = ({photoDetails, handleClick}) => {
 
   return (
     <div className="photo-details-modal" onClick={toggleModal}>
-      <button className="photo-details-modal__close-button">
-        <img src={closeSymbol} alt="close symbol" />
+      <button className="photo-details-modal__close-button" onClick={closeModal}>
+        <img src={closeSymbol} alt="close symbol"/>
       </button>
     </div>
   );
