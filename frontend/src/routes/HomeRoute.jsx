@@ -5,6 +5,9 @@ import PhotoDetailsModal from './PhotoDetailsModal';
 import '../styles/HomeRoute.scss';
 import { useFavourites } from 'components/FavouritesContext';
 
+
+//og homeroute
+
 const HomeRoute = ({ photos, topics,photoDetails, setPhotoDetails}) => {
   const {favourites, setFavourites} = useFavourites();
 
@@ -16,18 +19,65 @@ const HomeRoute = ({ photos, topics,photoDetails, setPhotoDetails}) => {
     }
   };
 
-  const toggleModal = () => {
-    setPhotoDetails(prevPhotoDetails => !prevPhotoDetails);
+
+  const toggleModal = (photoId) => {
+    const photo = photos.find(photo => photo.id === photoId);
+    setPhotoDetails(photo);
     console.log('Modal clicked');
   };
+
+  // const toggleModal = (photo) => {
+  //   setPhotoDetails(photo);
+  //   console.log('Modal clicked');
+  // };
+  
+
+  // const toggleModal = () => {
+  //   setPhotoDetails(prevPhotoDetails => !prevPhotoDetails);
+  //   console.log('Modal clicked');
+  // };
 
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} favouritesCount={favourites.length}/>
       <PhotoList photos={photos} toggleFavourite={toggleFavourite} toggleModal={toggleModal}/>
-      <PhotoDetailsModal photoDetails= {photoDetails} setPhotoDetails={setPhotoDetails} handleClick={toggleModal}/>
+      <PhotoDetailsModal photoDetails={photoDetails} setPhotoDetails={setPhotoDetails} handleClick={toggleModal}/>
     </div>
   );
 };
 
 export default HomeRoute;
+
+
+//Moded homeroute
+
+// const HomeRoute = ({ photos, topics, photoDetails, setPhotoDetails}) => {
+//   const {favourites, setFavourites} = useFavourites();
+
+//   const toggleFavourite = (photoId) => {
+//     if (favourites.includes(photoId)) {
+//       setFavourites(favourites.filter((id) => id !== photoId));
+//     } else {
+//       setFavourites([...favourites, photoId]);
+//     }
+//   };
+
+//   const toggleModal = (photo) => {
+//     if (photoDetails) {
+//       setPhotoDetails(null);
+//     } else {
+//       setPhotoDetails(photo);
+//       console.log("modal toggled");
+//     }
+//   };
+
+//   return (
+//     <div className="home-route">
+//       <TopNavigationBar topics={topics} favouritesCount={favourites.length}/>
+//       <PhotoList photos={photos} toggleFavourite={toggleFavourite} toggleModal={toggleModal}/>
+//       <PhotoDetailsModal photoDetails= {photoDetails} setPhotoDetails={setPhotoDetails} handleClick={toggleModal}/>
+//     </div>
+//   );
+// };
+
+// export default HomeRoute;
