@@ -5,9 +5,6 @@ import PhotoDetailsModal from './PhotoDetailsModal';
 import '../styles/HomeRoute.scss';
 import { useFavourites } from 'components/FavouritesContext';
 
-
-//og homeroute
-
 const HomeRoute = ({ photos, topics,photoDetails, setPhotoDetails}) => {
   const {favourites, setFavourites} = useFavourites();
 
@@ -47,37 +44,3 @@ const HomeRoute = ({ photos, topics,photoDetails, setPhotoDetails}) => {
 };
 
 export default HomeRoute;
-
-
-//Moded homeroute
-
-// const HomeRoute = ({ photos, topics, photoDetails, setPhotoDetails}) => {
-//   const {favourites, setFavourites} = useFavourites();
-
-//   const toggleFavourite = (photoId) => {
-//     if (favourites.includes(photoId)) {
-//       setFavourites(favourites.filter((id) => id !== photoId));
-//     } else {
-//       setFavourites([...favourites, photoId]);
-//     }
-//   };
-
-//   const toggleModal = (photo) => {
-//     if (photoDetails) {
-//       setPhotoDetails(null);
-//     } else {
-//       setPhotoDetails(photo);
-//       console.log("modal toggled");
-//     }
-//   };
-
-//   return (
-//     <div className="home-route">
-//       <TopNavigationBar topics={topics} favouritesCount={favourites.length}/>
-//       <PhotoList photos={photos} toggleFavourite={toggleFavourite} toggleModal={toggleModal}/>
-//       <PhotoDetailsModal photoDetails= {photoDetails} setPhotoDetails={setPhotoDetails} handleClick={toggleModal}/>
-//     </div>
-//   );
-// };
-
-// export default HomeRoute;

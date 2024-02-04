@@ -34,33 +34,13 @@ const PhotoListItem = ({ item, toggleModal }) => {
       <img className="photo-list__image" src={regular ? regular : 'default-image.jpg'} alt={username ? username : 'User not available'} />
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={profile} alt={username} />
-        <div>{username}</div>
-        {/* <div className="photo-list__user-info">{username}</div> */}
-        {/* <div className="photo-list__user-info">{username ? username : 'User not available'}</div> */}
+        <div className="photo-list__user-info">{username}</div>
       </div>
       <div className="photo-list__user-location">
         <div>{location ? `${city}, ${country}` : 'Location not available'}</div>
       </div>
     </section>
   );
-
-  // return (
-  //   <section key={id} className="photo-list__item" onClick={() => toggleModal(id)}>
-  //     <PhotoFavButton
-  //       like={favourites.includes(id)}
-  //       handleClick={() => toggleFavourite(id)}
-  //     />
-  
-  //     <img className="photo-list__image" src={regular ? regular : 'default-image.jpg'} alt={username ? username : 'User not available'} />
-  //     <div className="photo-list__user-details">
-  //       <img className="photo-list__user-profile" src={profile} alt={username} />
-  //       <div className="photo-list__user-info">{username ? username : 'User not available'}</div>
-  //     </div>
-  //     <div className="photo-list__user-location">
-  //       <div>{location ? `${city}, ${country}` : 'Location not available'}</div>
-  //     </div>
-  //   </section>
-  // );
 };
 
 export default PhotoListItem;
