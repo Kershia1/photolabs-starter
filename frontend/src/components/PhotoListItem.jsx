@@ -10,9 +10,9 @@ const PhotoListItem = ({ item, toggleModal }) => {
   const { id, location, urls, user } = item;
   const { city, country } = location;
   const { regular } = urls;
-  const { username, profile } = user;
+  const { name, profile } = user;
   const { favourites, setFavourites } = useFavourites();
-  console.log("username", username);
+  console.log("username", name);
   console.log(user);
 
   const toggleFavourite = (photoId) => {
@@ -31,10 +31,10 @@ const PhotoListItem = ({ item, toggleModal }) => {
         handleClick={() => toggleFavourite(id)}
       />
   
-      <img className="photo-list__image" src={regular ? regular : 'default-image.jpg'} alt={username ? username : 'User not available'} />
+      <img className="photo-list__image" src={regular ? regular : 'default-image.jpg'} alt={name ? name : 'User not available'} />
       <div className="photo-list__user-details">
-        <img className="photo-list__user-profile" src={profile} alt={username} />
-        <div className="photo-list__user-info">{username}</div>
+        <img className="photo-list__user-profile" src={profile} alt={name} />
+        <div className="photo-list__user-info">{name}</div>
       </div>
       <div className="photo-list__user-location">
         <div>{location ? `${city}, ${country}` : 'Location not available'}</div>

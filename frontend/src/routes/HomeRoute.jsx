@@ -23,22 +23,12 @@ const HomeRoute = ({ photos, topics,photoDetails, setPhotoDetails}) => {
     console.log('Modal clicked');
   };
 
-  // const toggleModal = (photo) => {
-  //   setPhotoDetails(photo);
-  //   console.log('Modal clicked');
-  // };
-  
-
-  // const toggleModal = () => {
-  //   setPhotoDetails(prevPhotoDetails => !prevPhotoDetails);
-  //   console.log('Modal clicked');
-  // };
-
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} favouritesCount={favourites.length}/>
       <PhotoList photos={photos} toggleFavourite={toggleFavourite} toggleModal={toggleModal}/>
-      <PhotoDetailsModal photoDetails={photoDetails} setPhotoDetails={setPhotoDetails} handleClick={toggleModal}/>
+      {/* added toggle fav to here to pass as a prop to the Modal this is the most common parent component */}
+      <PhotoDetailsModal photoDetails={photoDetails} setPhotoDetails={setPhotoDetails} toggleFavourite={toggleFavourite} handleClick={toggleModal}/>
     </div>
   );
 };
