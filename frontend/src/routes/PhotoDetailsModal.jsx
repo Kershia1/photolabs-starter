@@ -11,7 +11,7 @@ import { useFavourites } from 'components/FavouritesContext';
 const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
   const onClick = (e) => {
     e.stopPropagation();
-    handleClick();
+    handleClick(e);
   };
 
   return (
@@ -27,25 +27,12 @@ const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
   );
 };
 
-// const ModalPhotoFavButton = ({ like, handleClick }) => {
-//   const onClick = (e) => {
-//     e.stopPropagation();
-//     handleClick();
-//   };
-
-//   return (
-//     <button className={`photo-fav-button ${like ? 'photo-fav-button--liked' : ''}`} onClick={onClick}>
-//       <img src={like ? heartFilled : heartOutline} alt="favourite" />
-//       {/* I can't remeber the route  */}
-//     </button>
-//   );
-// };
-
 const PhotoDetailsModal = ({photoDetails, setPhotoDetails, handleClick, toggleFavourite}) => {
   const {favourites, setFavourites} = useFavourites();
   //use the context to get the favs and set the favs
   const [isOpen, setIsOpen] = useState(true);
   //if modal is open, set to true, if closed, set to false
+  const [displayAlert, setDisplayAlert] = useState(false);
 
   const { id } = photoDetails;
   console.log(photoDetails);
@@ -75,14 +62,13 @@ const PhotoDetailsModal = ({photoDetails, setPhotoDetails, handleClick, toggleFa
         <img src={closeSymbol} alt="close symbol"/>
       </button>
 
-      {/* <ModalPhotoFavButton
-        like={favourites.includes(id)}
-        handleClick={() => toggleFavourite(id)}
-      /> */}
-
       <ModalPhotoFavButton
         like={favourites.includes(id)}
-        handleClick={() => toggleFavourite(id)}
+        handleClick={(e) =>{
+          e.stopPropagation();
+          toggleFavourite(id);
+          setDisplayAlert(!displayAlert);
+        }}
         displayAlert={favourites.includes(id)}
       />
 
@@ -97,20 +83,10 @@ const PhotoDetailsModal = ({photoDetails, setPhotoDetails, handleClick, toggleFa
       <div className="photo-details-modal__header">Similar Photos</div>
       <div className="photo-details-modal__images">
         {photoDetails.similarPhotos ? <PhotoList photos={Object.values(photoDetails.similarPhotos)} /> : null}
-        {/* <PhotoList photos={photoDetails.similarPhotos} /> */}
+        
       </div>
     </div>
   ) : null;
 };
 
 export default PhotoDetailsModal;
-
-//  <PhotoFavButton
-//     like={favourites.includes(id)}
-//     handleClick={() => toggleFavourite(id)}
-//   />
-
-
-//   <button className={`photo-fav-button ${like ? 'photo-fav-button--liked' : ''}`} onClick={onClick}>
-//   <img src={like ? heartFilled : heartOutline} alt="favourite" />
-// </button>
