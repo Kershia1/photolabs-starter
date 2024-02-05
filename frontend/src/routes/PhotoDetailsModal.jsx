@@ -12,6 +12,7 @@ const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
   const onClick = (e) => {
     e.stopPropagation();
     handleClick(e);
+    console.log('Fav button clicked');
   };
 
   return (
@@ -39,11 +40,13 @@ const PhotoDetailsModal = ({photoDetails, setPhotoDetails, handleClick, toggleFa
 
   const toggleModal = () => {
     handleClick && handleClick();
+    console.log('Is Open:', !isOpen);
   };
 
   const closeModal = (e) => {
     e.stopPropagation();
     setPhotoDetails(false);
+    console.log('Is Open:', false);
   };
 
   if (!photoDetails) {
