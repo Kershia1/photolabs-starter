@@ -43,6 +43,12 @@
   margin-left: 8px;
 }
 
+.photo-list__user-info-container {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .photo-list__user-location {
   color: #838383;
 }

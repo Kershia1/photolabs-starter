@@ -34,10 +34,12 @@ const PhotoListItem = ({ item, toggleModal }) => {
       <img className="photo-list__image" src={regular ? regular : 'default-image.jpg'} alt={name ? name : 'User not available'} />
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={profile} alt={name} />
-        <div className="photo-list__user-info">{name}</div>
-      </div>
-      <div className="photo-list__user-location">
-        <div>{location ? `${city}, ${country}` : 'Location not available'}</div>
+        <div className="photo-list__user-info-container">
+          <div className="photo-list__user-info">{name}</div>
+          <div className="photo-list__user-location">
+            <div>{location ? `${city}, ${country}` : 'Location not available'}</div>
+          </div>
+        </div>
       </div>
     </section>
   );
