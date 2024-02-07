@@ -11,7 +11,10 @@ const App = () => {
   const {
     state,
     toggleModal,
-  } = useApplicationData();
+    isModalOpen,
+    updateToFavPhotoIds,
+    onClosePhotoDetailsModal,
+  } = useApplicationData(photos);
 
   const [photoDetails, setPhotoDetails] = useState(false);
 
@@ -20,31 +23,12 @@ const App = () => {
       <HomeRoute photos={photos}
         topics={topics}
         photoDetails={photoDetails}
-        setPhotoDetails={setPhotoDetails}
-        // toggleFavourite={toggleFavourite}
+        setPhotoDetails={onClosePhotoDetailsModal}
         toggleModal={toggleModal}
+        isModalOpen={isModalOpen}
       />
     </FavouritesProvider>
   );
 };
 
 export default App;
-/**When we are done organizing the code, the App component should look similar to the example provided below.
- *
- * This Component will only be responsible for passing data to other components. The custom Hook now owns the data management.
- *
- * const App = () => {
-  const {
-    state,
-    onPhotoSelect,
-    updateToFavPhotoIds,
-    onLoadTopic,
-    onClosePhotoDetailsModal,
-  } = useApplicationData();
-
-  return (
-    // React components
-  );
-}
- *
- */

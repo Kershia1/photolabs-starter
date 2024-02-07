@@ -5,10 +5,6 @@ const FavouritesContext = createContext();
 
 export default FavouritesContext;
 
-// Provider component that wraps your app and makes the favs state accessible to all components
-//children propr is the components that are wrapped by the provider
-//created by react to specifically handle this situation to negate the need to explicitly pass down props through every component
-
 export const FavouritesProvider = ({ children }) => {
   const [favourites, setFavourites] = useState([]);
 

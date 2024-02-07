@@ -1,9 +1,9 @@
 import React from "react";
 import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
-import { useFavourites } from "./FavouritesContext";
 
 const PhotoList = ({ photos, toggleModal }) => {
+  console.log(toggleModal);
 
   return (
     <ul className="photo-list">
@@ -12,8 +12,6 @@ const PhotoList = ({ photos, toggleModal }) => {
           <PhotoListItem
             key={item.id}
             item={item}
-            // toggleFavourite={toggleFavourite}
-            // favourites={favourites}
             toggleModal={toggleModal}
           />
         );

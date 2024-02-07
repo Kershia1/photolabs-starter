@@ -1,44 +1,38 @@
-/*
-We can use the custom Hook instead of useState. We store the object that the Hook returns in a separate variable per input. The spread operator provides an easy way to pass the value and onChange props directly to each input element.
-
-import { useEffect } from "react";
-
-export default function useDebounce(operation, ms) {
-  useEffect(() => {
-    const handle = setTimeout(operation, ms);
-    return () => clearTimeout(handle);
-  }, [operation, ms]);
-}
-
-
-Our useApplicationData Hook will return an object with four keys representing the following items:
-
-The state object will contain the entire state of the application.
-The updateToFavPhotoIds action can be used to set the favourite photos.
-The setPhotoSelected action can be used when the user selects a photo.
-The onClosePhotoDetailsModal action can be used to close the modal */
-
-
 import React, { useState } from "react";
-// import FavouritesContext from "components/FavouritesContext";
 
-export default function useApplicationData(photos) {
-  const [photoDetails, setPhotoDetails] = useState(false);
-  const [favourites, useFavourites] = useState([]);
+const useApplicationData = (photos) => {
+  const [photoDetails, setPhotoDetails] = useState(null);
+  const [favourites, setFavourites] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const toggleFavourite = (photoId, photots) => {
-  //   const photo = photos.find(photo => photo.id === photoId);
-  //   setPhotoDetails(photo);
-  // };
-  const toggleModal = (photoId) => {
-    const photo = photos.find(photo => photo.id === photoId);
-    setPhotoDetails(photo);
-    console.log('Modal clicked');
+  const toggleModal = (id) => {
+    console.log('toggleModal called with id:', id);
+    const selectedPhoto = photos.find(photo => photo.id === id);
+    console.log('Selected photo:', selectedPhoto);
+    setPhotoDetails(selectedPhoto);
+    setIsModalOpen(true);
+    // setIsModalOpen(false);
+    console.log(toggleModal);
+  };
+
+
+  const toggleFavourite = (photoId) => {
+    const newFavourites = favourites.includes(photoId) ? favourites.filter(id => id !== photoId) : [...favourites, photoId];
+    setFavourites(newFavourites);
+  };
+
+  const onClosePhotoDetailsModal = () => {
+    setPhotoDetails(null);
   };
 
   return {
     photoDetails,
     favourites,
     toggleModal,
+    updateToFavPhotoIds: toggleFavourite,
+    onClosePhotoDetailsModal,
   };
-}
+};
+
+
+export default useApplicationData;

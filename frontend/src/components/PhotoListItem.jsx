@@ -6,6 +6,7 @@ import PhotoFavButton from "./PhotoFavButton";
 import { useFavourites } from "./FavouritesContext";
 
 const PhotoListItem = ({ item, toggleModal }) => {
+  console.log(typeof toggleModal);
 
   const { id, urls, user, location} = item;
   const { city, country } = location;
@@ -14,7 +15,11 @@ const PhotoListItem = ({ item, toggleModal }) => {
   const { favourites, toggleFavourite } = useFavourites();
 
   return (
-    <section key={id} className="photo-list__item" onClick={() => toggleModal(id)}>
+    <section key={id} className="photo-list__item" onClick={() => {
+      console.log('Photo clicked with id:', id);
+      console.log('toggleModal function:', toggleModal);
+      toggleModal(id);
+    }}>
       <PhotoFavButton
         like={favourites.includes(id)}
         handleClick={() => toggleFavourite(id)}

@@ -28,7 +28,8 @@ const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
   );
 };
 
-const PhotoDetailsModal = ({photoDetails, setPhotoDetails, handleClick, toggleFavourite}) => {
+const PhotoDetailsModal = ({photoDetails, handleClick, toggleFavourite, toggleModal, isModalOpen}) => {
+  console.log(toggleModal);
   console.log("Modal Clikced");
   const {favourites, setFavourites} = useFavourites();
   //use the context to get the favs and set the favs
@@ -39,25 +40,20 @@ const PhotoDetailsModal = ({photoDetails, setPhotoDetails, handleClick, toggleFa
   const { id } = photoDetails;
   console.log(photoDetails);
 
-  // const toggleModal = () => {
-  //   handleClick && handleClick();
-  //   console.log('Is Open:', !isOpen);
-  // };
-
-  const closeModal = (e) => {
-    e.stopPropagation();
-    setPhotoDetails(false);
-    console.log('Is Open:', false);
-  };
-
-  if (!photoDetails) {
+  if (!isModalOpen) {
     return null;
   }
 
+  const closeModal = (e) => {
+    e.stopPropagation();
+    toggleModal(); // Close the modal when the close button is clicked
+    console.log('Is Open:', false);
+  };
+
   //if photoDetails is false, return null as in nothing is displayed
   //if photoDetails is true, return the following
+
   return (
-    // isOpen ?
     <div className="photo-details-modal" onClick={handleClick}>
       {/* <div className="photo-details-modal" onClick={toggleModal}></div> */}
       <button className="photo-details-modal__close-button" onClick={closeModal}>
@@ -89,7 +85,6 @@ const PhotoDetailsModal = ({photoDetails, setPhotoDetails, handleClick, toggleFa
       </div>
     </div>
   );
-  // : null
 };
 
 export default PhotoDetailsModal;
