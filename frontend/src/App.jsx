@@ -3,14 +3,27 @@ import HomeRoute from 'routes/HomeRoute';
 import photos from 'mocks/photos';
 import topics from 'mocks/topics';
 import { FavouritesProvider } from './components/FavouritesContext';
+import useApplicationData from 'hooks/useApplicationData';
 import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
+  const {
+    state,
+    toggleModal,
+  } = useApplicationData();
+
   const [photoDetails, setPhotoDetails] = useState(false);
+
   return (
     <FavouritesProvider>
-      <HomeRoute photos={photos} topics={topics} photoDetails={photoDetails}setPhotoDetails={setPhotoDetails} />
+      <HomeRoute photos={photos}
+        topics={topics}
+        photoDetails={photoDetails}
+        setPhotoDetails={setPhotoDetails}
+        // toggleFavourite={toggleFavourite}
+        toggleModal={toggleModal}
+      />
     </FavouritesProvider>
   );
 };

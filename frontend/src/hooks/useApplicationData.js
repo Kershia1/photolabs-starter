@@ -17,3 +17,28 @@ The state object will contain the entire state of the application.
 The updateToFavPhotoIds action can be used to set the favourite photos.
 The setPhotoSelected action can be used when the user selects a photo.
 The onClosePhotoDetailsModal action can be used to close the modal */
+
+
+import React, { useState } from "react";
+// import FavouritesContext from "components/FavouritesContext";
+
+export default function useApplicationData(photos) {
+  const [photoDetails, setPhotoDetails] = useState(false);
+  const [favourites, useFavourites] = useState([]);
+
+  // const toggleFavourite = (photoId, photots) => {
+  //   const photo = photos.find(photo => photo.id === photoId);
+  //   setPhotoDetails(photo);
+  // };
+  const toggleModal = (photoId) => {
+    const photo = photos.find(photo => photo.id === photoId);
+    setPhotoDetails(photo);
+    console.log('Modal clicked');
+  };
+
+  return {
+    photoDetails,
+    favourites,
+    toggleModal,
+  };
+}

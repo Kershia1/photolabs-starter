@@ -5,30 +5,15 @@ import PhotoDetailsModal from './PhotoDetailsModal';
 import '../styles/HomeRoute.scss';
 import { useFavourites } from 'components/FavouritesContext';
 
-const HomeRoute = ({ photos, topics,photoDetails, setPhotoDetails}) => {
-  const {favourites, setFavourites} = useFavourites();
+const HomeRoute = ({ photos, topics, photoDetails, setPhotoDetails, toggleModal, toggleFavourite}) => {
 
-  const toggleFavourite = (photoId) => {
-    if (favourites.includes(photoId)) {
-      setFavourites(favourites.filter((id) => id !== photoId));
-    } else {
-      setFavourites([...favourites, photoId]);
-    }
-  };
-
-
-  const toggleModal = (photoId) => {
-    const photo = photos.find(photo => photo.id === photoId);
-    setPhotoDetails(photo);
-    console.log('Modal clicked');
-  };
+  const { favourites } = useFavourites();
 
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} favouritesCount={favourites.length}/>
-      <PhotoList photos={photos} toggleFavourite={toggleFavourite} toggleModal={toggleModal}/>
-      {/* added toggle fav to here to pass as a prop to the Modal this is the most common parent component */}
-      <PhotoDetailsModal photoDetails={photoDetails} setPhotoDetails={setPhotoDetails} toggleFavourite={toggleFavourite} handleClick={toggleModal}/>
+      <PhotoList photos={photos} toggleModal={toggleModal}/>
+      <PhotoDetailsModal photoDetails={photoDetails} setPhotoDetails={setPhotoDetails} handleClick={toggleModal} toggleFavourite={toggleFavourite}/>
     </div>
   );
 };

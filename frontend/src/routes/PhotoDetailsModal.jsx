@@ -29,19 +29,20 @@ const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
 };
 
 const PhotoDetailsModal = ({photoDetails, setPhotoDetails, handleClick, toggleFavourite}) => {
+  console.log("Modal Clikced");
   const {favourites, setFavourites} = useFavourites();
   //use the context to get the favs and set the favs
-  const [isOpen, setIsOpen] = useState(true);
+  // const [isOpen, setIsOpen] = useState(true);
   //if modal is open, set to true, if closed, set to false
   const [displayAlert, setDisplayAlert] = useState(false);
 
   const { id } = photoDetails;
   console.log(photoDetails);
 
-  const toggleModal = () => {
-    handleClick && handleClick();
-    console.log('Is Open:', !isOpen);
-  };
+  // const toggleModal = () => {
+  //   handleClick && handleClick();
+  //   console.log('Is Open:', !isOpen);
+  // };
 
   const closeModal = (e) => {
     e.stopPropagation();
@@ -53,14 +54,12 @@ const PhotoDetailsModal = ({photoDetails, setPhotoDetails, handleClick, toggleFa
     return null;
   }
 
-  // const handleClickModalFavB = () => {
-  //   setIsOpen(!isOpen);
-  // };
-
   //if photoDetails is false, return null as in nothing is displayed
   //if photoDetails is true, return the following
-  return isOpen ? (
-    <div className="photo-details-modal" onClick={toggleModal}>
+  return (
+    // isOpen ?
+    <div className="photo-details-modal" onClick={handleClick}>
+      {/* <div className="photo-details-modal" onClick={toggleModal}></div> */}
       <button className="photo-details-modal__close-button" onClick={closeModal}>
         <img src={closeSymbol} alt="close symbol"/>
       </button>
@@ -89,7 +88,8 @@ const PhotoDetailsModal = ({photoDetails, setPhotoDetails, handleClick, toggleFa
         
       </div>
     </div>
-  ) : null;
+  );
+  // : null
 };
 
 export default PhotoDetailsModal;

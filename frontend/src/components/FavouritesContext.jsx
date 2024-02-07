@@ -12,8 +12,16 @@ export default FavouritesContext;
 export const FavouritesProvider = ({ children }) => {
   const [favourites, setFavourites] = useState([]);
 
+  const toggleFavourite = (photoId) => {
+    if (favourites.includes(photoId)) {
+      setFavourites(favourites.filter((id) => id !== photoId));
+    } else {
+      setFavourites([...favourites, photoId]);
+    }
+  };
+
   return (
-    <FavouritesContext.Provider value={{ favourites, setFavourites }}>
+    <FavouritesContext.Provider value={{ favourites, toggleFavourite }}>
       {children}
     </FavouritesContext.Provider>
   );

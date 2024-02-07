@@ -7,22 +7,11 @@ import { useFavourites } from "./FavouritesContext";
 
 const PhotoListItem = ({ item, toggleModal }) => {
 
-  const { id, location, urls, user } = item;
+  const { id, urls, user, location} = item;
   const { city, country } = location;
   const { regular } = urls;
   const { name, profile } = user;
-  const { favourites, setFavourites } = useFavourites();
-  console.log("username", name);
-  console.log(user);
-
-  const toggleFavourite = (photoId) => {
-    console.log('Favorite clicked');
-    if (favourites.includes(photoId)) {
-      setFavourites(favourites.filter((id) => id !== photoId));
-    } else {
-      setFavourites([...favourites, photoId]);
-    }
-  };
+  const { favourites, toggleFavourite } = useFavourites();
 
   return (
     <section key={id} className="photo-list__item" onClick={() => toggleModal(id)}>

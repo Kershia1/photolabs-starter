@@ -3,10 +3,7 @@ import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 import { useFavourites } from "./FavouritesContext";
 
-const PhotoList = ({ photos, toggleFavourite, toggleModal }) => {
-  const { favourites } = useFavourites();
-
-  console.log(photos);
+const PhotoList = ({ photos, toggleModal }) => {
 
   return (
     <ul className="photo-list">
@@ -15,8 +12,8 @@ const PhotoList = ({ photos, toggleFavourite, toggleModal }) => {
           <PhotoListItem
             key={item.id}
             item={item}
-            toggleFavourite={toggleFavourite}
-            favourites={favourites}
+            // toggleFavourite={toggleFavourite}
+            // favourites={favourites}
             toggleModal={toggleModal}
           />
         );
