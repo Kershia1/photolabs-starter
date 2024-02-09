@@ -12,10 +12,13 @@ export const ACTIONS = {
 };
 
 // Define initial state
+//Added photos and topics
 const initialState = {
   photoDetails: null,
   favourites: [],
-  isModalOpen: false
+  isModalOpen: false,
+  photoData: [],
+  topicData: []
 };
 
 // Define reducer function
