@@ -1,5 +1,5 @@
 /* eslint-disable func-style */
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 
 // Define action types
 export const ACTIONS = {
@@ -73,17 +73,32 @@ useEffect(() => {...}, [val]) // dependancies  == when val changes, run this eff
    */
 
   //Fetch all photos, only 1 render never again
-  const getAllPhotos = () => {
+  const getAllPhotos = (() => {
     fetch(`/api/photos`)
       .then(res => res.json())
       .then(photoData => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photoData}));
-  };
+  }, []);
 
   //Store All Photo Data
+  // useEffect(() => {
+  //   getAllPhotos();
+  // }, []);
 
-  //API display photos
+  //Fetch All topics
+  useEffect(() => {
+    fetch(`/api/topics`)
+      .then(res => res.json())
+      .then(topicData => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topicData}));
+  }, []);
 
-  //Fetch By topic
+  //Fetch Photos By Topic
+  useEffect(() => {
+    if(state.topicData) {
+      fetch(`/api/topics/photos/${state.topicData}`
+      .then(res => res.json())
+      .then(topicData =>dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: topicData}))
+    }
+  }, [state.topicData]);
 
 
   return {
