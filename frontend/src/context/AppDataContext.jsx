@@ -7,7 +7,8 @@ export const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-  CLOSE_PHOTO_DETAILS: 'CLOSE_PHOTO_DETAILS'
+  CLOSE_PHOTO_DETAILS: 'CLOSE_PHOTO_DETAILS',
+  TOGGLE_MODAL: 'TOGGLE_MODAL'
 };
 
 const initialState = {
@@ -15,11 +16,13 @@ const initialState = {
   favourites: [],
   isModalOpen: false,
   photoData: [],
-  topicData: []
+  topicData: [],
+  selectedPhoto: null,
+  toggleModal: false
 };
 
 // Define reducer function
-function reducer(state, action) {
+const reducer = (state, action) => {
   switch (action.type) {
   case ACTIONS.FAV_PHOTO_ADDED:
     return { ...state, favourites: [...state.favourites, action.payload.photoId] };
@@ -33,14 +36,12 @@ function reducer(state, action) {
     return { ...state, selectedPhoto: action.payload.selectedPhoto };
   case ACTIONS.DISPLAY_PHOTO_DETAILS:
     return { ...state, isModalOpen: action.payload.isModalOpen };
-    // case ACTIONS.CLOSE_PHOTO_DETAILS:
-    //   {...state, }
+  case ACTIONS.TOGGLE_MODAL:
+    return { ...state, isModalOpen: !state.isModalOpen };
   default:
     throw new Error(`Unsupported action type: ${action.type}`);
   }
 }
-//ACTIONS.CLOSE_PHOTO
-
 const AppDataContext = createContext();
 
 export const useAppDataContext = () => {
@@ -71,18 +72,16 @@ export const AppDataProvider = ({ children }) => {
 
   //Fetch Photos By Topic
   useEffect(() => {
-    if(state.topicData) {
-      fetch(`/api/topics/photos/${state.topicData}`
-      .then(res => res.json())
-      .then(topicData =>dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: topicData}))
+    if (state.topicData) {
+      fetch(`/api/topics/photos/${state.topicData}`)
+        .then(res => res.json())
+        .then(topicData =>dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: topicData}));
     }
   }, [state.topicData]);
-}
 
   return (
     <AppDataContext.Provider value={{state, dispatch}}>
       {children}
     </AppDataContext.Provider>
-
   );
 };

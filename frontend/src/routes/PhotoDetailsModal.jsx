@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from 'components/PhotoList';
-import PhotoFavButton from 'components/PhotoFavButton';
 import { useFavourites } from 'components/FavouritesContext';
-
-//Og PhotoDetailsModal toggleFav added, use fav added as state, obj id for photo details added basical make a new favicon button with state for modal
-
 
 const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
   const onClick = (e) => {

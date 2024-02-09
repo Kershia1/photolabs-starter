@@ -4,11 +4,15 @@ import PhotoList from '../components/PhotoList';
 import PhotoDetailsModal from './PhotoDetailsModal';
 import '../styles/HomeRoute.scss';
 import { useFavourites } from 'components/FavouritesContext';
+import { useAppDataContext } from 'context/AppDataContext';
 
-const HomeRoute = ({ photos, topics, photoDetails, setPhotoDetails, onPhotoSelect, updateToFavPhotoIds,toggleModal, isModalOpen}) => {
+const HomeRoute = ({ photoDetails, setPhotoDetails, updateToFavPhotoIds,toggleModal, isModalOpen}) => {
   console.log(toggleModal);
+  const { state } = useAppDataContext();
+  const { photoData: photos, topicData: topics } = state;
 
   const { favourites } = useFavourites();
+  
 
   return (
     <div className="home-route">

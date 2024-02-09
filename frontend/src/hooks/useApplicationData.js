@@ -12,19 +12,15 @@ export const useApplicationData = () => {
   const setPhotoSelected = photo => dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
 
   const onClosePhotoDetailsModal = () => dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: {isModalOpen: false} });
-  //re-write to ACTIONS.CLOSE_PHOTO
 
-  // const onPhotoSelect = photo => dispatch({ type: ACTIONS.})
+  const toggleModal = () => dispatch({ type: ACTIONS.TOGGLE_MODAL });
 
-  // const on TopicSelect = topic => dispatch({ type: ACTIONS.})
   return {
     state,
     photoDetails: state.photoDetails,
     favourites: state.favourites,
-    toggleModal: () => {},
-    toggleFavourite:() => {},
+    toggleModal,
     onClosePhotoDetailsModal,
-    getAllPhotos: () => {},
     updateToFavPhotoIds,
     setPhotoSelected
   };
