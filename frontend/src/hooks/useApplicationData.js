@@ -63,12 +63,36 @@ const useApplicationData = (photos) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: null } });
   };
 
+  //Api fetch reqs from backend
+  /**
+   * useEffect(() => {...}) //        no dependancies == on every re-render, run this effect
+
+useEffect(() => {...}, []) //    empty dependancy == only run this effect on the initial (after) render, and never do it again
+
+useEffect(() => {...}, [val]) // dependancies  == when val changes, run this effect, if any other state changes, do not run this effect
+   */
+
+  //Fetch all photos, only 1 render never again
+  const getAllPhotos = () => {
+    fetch(`/api/photos`)
+      .then(res => res.json())
+      .then(photoData => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photoData}));
+  };
+
+  //Store All Photo Data
+
+  //API display photos
+
+  //Fetch By topic
+
+
   return {
     photoDetails: state.photoDetails,
     favourites: state.favourites,
     toggleModal,
     toggleFavourite,
     onClosePhotoDetailsModal,
+    getAllPhotos
   };
 };
 
