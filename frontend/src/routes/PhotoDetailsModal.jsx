@@ -3,7 +3,7 @@ import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from 'components/PhotoList';
 import { useFavourites } from 'components/FavouritesContext';
-import { ACTIONS } from 'context/AppDataContext';
+import { useAppDataContext, ACTIONS } from 'context/AppDataContext';
 
 const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
   const onClick = (e) => {
@@ -26,10 +26,12 @@ const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
 };
 
 const PhotoDetailsModal = ({photoDetails, handleClick, toggleFavourite, toggleModal, isModalOpen, photos, dispatch}) => {
-  console.log(toggleModal);
-  console.log("Modal Clicked");
+  // console.log(toggleModal);
+  // console.log("Modal Clicked");
   const {favourites, setFavourites} = useFavourites();
   const [displayAlert, setDisplayAlert] = useState(false);
+  const { state, dispatch } = useAppDataContext();
+  const { isModalOpen, selectedPhoto } = state;
 
   const { id } = photoDetails;
   console.log(photoDetails);
@@ -45,14 +47,22 @@ const PhotoDetailsModal = ({photoDetails, handleClick, toggleFavourite, toggleMo
     });
   };
 
-  const handleClose = () => {
-    dispatch({
-      type: ACTIONS.CLOSE_PHOTO_DETAILS,
-      payload: {
-        isModalOpen: false
-      }
-    });
+  const closeModal = () => {
+    dispatch({ type: ACTIONS.TOGGLE_MODAL });
   };
+
+if (!isModalOpen || !selectedPhoto) {
+  return null;
+}
+
+  // const handleClose = () => {
+  //   dispatch({
+  //     type: ACTIONS.CLOSE_PHOTO_DETAILS,
+  //     payload: {
+  //       isModalOpen: false
+  //     }
+  //   });
+  // };
 
   // Call handlePhotoSelect when the component is mounted
   useEffect(() => {
@@ -60,7 +70,7 @@ const PhotoDetailsModal = ({photoDetails, handleClick, toggleFavourite, toggleMo
   }, []);
 
   return (
-    <div className="photo-details-modal" onClick={handleClick}>
+    <div className="photo-details-modal" onClick={closeModal}>
       {/* <div className="photo-details-modal" onClick={toggleModal}></div> */}
       <button className="photo-details-modal__close-button" onClick={handleClose}>
         <img src={closeSymbol} alt="close symbol"/>
