@@ -8,7 +8,8 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   CLOSE_PHOTO_DETAILS: 'CLOSE_PHOTO_DETAILS',
-  TOGGLE_MODAL: 'TOGGLE_MODAL'
+  TOGGLE_MODAL: 'TOGGLE_MODAL',
+  ON_TOPIC_SELECT: 'ON_TOPIC_SELECT'
 };
 
 const initialState = {
@@ -18,7 +19,8 @@ const initialState = {
   photoData: [],
   topicData: [],
   selectedPhoto: null,
-  toggleModal: false
+  toggleModal: false,
+  onTopicSelect: null
 };
 
 // Define reducer function
@@ -35,13 +37,15 @@ const reducer = (state, action) => {
   case ACTIONS.SELECT_PHOTO:
     return { ...state, selectedPhoto: action.payload.selectedPhoto };
   case ACTIONS.DISPLAY_PHOTO_DETAILS:
-    return { ...state, isModalOpen: action.payload.isModalOpen };
+    return { ...state, isModalOpen: action.payload.isModalOpen, selectedPhoto: action.payload.selectedPhoto };
   case ACTIONS.TOGGLE_MODAL:
     return { ...state, isModalOpen: !state.isModalOpen };
+  case ACTIONS.ON_TOPIC_SELECT:
+    return { ...state, selectedTopic: action.payload.topicData };
   default:
     throw new Error(`Unsupported action type: ${action.type}`);
   }
-}
+};
 const AppDataContext = createContext();
 
 export const useAppDataContext = () => {
@@ -78,6 +82,15 @@ export const AppDataProvider = ({ children }) => {
         .then(topicData =>dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: topicData}));
     }
   }, [state.topicData]);
+
+  //Fetch Photos By Topic when selected on Navbar
+  useEffect(() => {
+    if (state.onTopicSelect) {
+      fetch(`/api/topics/photos/${state.selectedTopic}`)
+        .then(res => res.json())
+        .then(topicData =>dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: topicData}));
+    }
+  }, [state.selectedTopic]);
 
   return (
     <AppDataContext.Provider value={{state, dispatch}}>

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from 'components/PhotoList';
 import { useFavourites } from 'components/FavouritesContext';
+import { ACTIONS } from 'context/AppDataContext';
 
 const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
   const onClick = (e) => {
@@ -24,35 +25,44 @@ const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
   );
 };
 
-const PhotoDetailsModal = ({photoDetails, handleClick, toggleFavourite, toggleModal, isModalOpen}) => {
+const PhotoDetailsModal = ({photoDetails, handleClick, toggleFavourite, toggleModal, isModalOpen, photos, dispatch}) => {
   console.log(toggleModal);
-  console.log("Modal Clikced");
+  console.log("Modal Clicked");
   const {favourites, setFavourites} = useFavourites();
-  //use the context to get the favs and set the favs
-  // const [isOpen, setIsOpen] = useState(true);
-  //if modal is open, set to true, if closed, set to false
   const [displayAlert, setDisplayAlert] = useState(false);
 
   const { id } = photoDetails;
   console.log(photoDetails);
 
-  if (!isModalOpen) {
-    return null;
-  }
-
-  const closeModal = (e) => {
-    e.stopPropagation();
-    toggleModal(); // Close the modal when the close button is clicked
-    console.log('Is Open:', false);
+  const handlePhotoSelect = (id) => {
+    const selectedPhoto = photos.find(photo => photo.id === id);
+    dispatch({
+      type: ACTIONS.DISPLAY_PHOTO_DETAILS,
+      payload: {
+        isModalOpen: true,
+        selectedPhoto: selectedPhoto
+      }
+    });
   };
 
-  //if photoDetails is false, return null as in nothing is displayed
-  //if photoDetails is true, return the following
+  const handleClose = () => {
+    dispatch({
+      type: ACTIONS.CLOSE_PHOTO_DETAILS,
+      payload: {
+        isModalOpen: false
+      }
+    });
+  };
+
+  // Call handlePhotoSelect when the component is mounted
+  useEffect(() => {
+    handlePhotoSelect(selectedPhotoId);
+  }, []);
 
   return (
     <div className="photo-details-modal" onClick={handleClick}>
       {/* <div className="photo-details-modal" onClick={toggleModal}></div> */}
-      <button className="photo-details-modal__close-button" onClick={closeModal}>
+      <button className="photo-details-modal__close-button" onClick={handleClose}>
         <img src={closeSymbol} alt="close symbol"/>
       </button>
 

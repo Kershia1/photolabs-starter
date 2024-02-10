@@ -7,7 +7,7 @@ import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const { state, toggleModal, onClosePhotoDetailsModal } = useApplicationData();
+  const { state, toggleModal, onClosePhotoDetailsModal, onTopicSelect } = useApplicationData();
   const [photoDetails, isModalOpen] = state;
 
   return (
@@ -18,6 +18,7 @@ const App = () => {
           setPhotoDetails={onClosePhotoDetailsModal}
           toggleModal={toggleModal}
           isModalOpen={isModalOpen}
+          onTopicSelect={onTopicSelect}
         />
       </AppDataProvider>
     </FavouritesProvider>

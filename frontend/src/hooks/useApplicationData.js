@@ -14,6 +14,9 @@ export const useApplicationData = () => {
   const onClosePhotoDetailsModal = () => dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: {isModalOpen: false} });
 
   const toggleModal = () => dispatch({ type: ACTIONS.TOGGLE_MODAL });
+  //activate state to modal is open.
+
+  const onTopicSelect = topic => dispatch({ type: ACTIONS.ON_TOPIC_SELECT, payload: topic });
 
   return {
     state,
@@ -22,7 +25,8 @@ export const useApplicationData = () => {
     toggleModal,
     onClosePhotoDetailsModal,
     updateToFavPhotoIds,
-    setPhotoSelected
+    setPhotoSelected,
+    onTopicSelect
   };
 };
 //still need to add the implemetation for these functions.

@@ -2,7 +2,8 @@ import React from "react";
 
 import "../styles/TopicListItem.scss";
 
-const TopicListItem = ({id, slug, label}) => {
+const TopicListItem = ({id, slug, label, onTopicSelect}) => {
+  console.log('Topic Item Clicked');
   const styledTopicListItem = {
     lineHeight: '24px',
     marginLeft: '24px',
@@ -17,7 +18,7 @@ const TopicListItem = ({id, slug, label}) => {
   };
 
   return (
-    <div className="topic-list__item">
+    <div className="topic-list__item" onClick={() => onTopicSelect(slug)}>
       <a href={`/${slug}`} style={styledTopicListItem}>
         <span style={styledTopicListSpan}>{label}</span>
       </a>
