@@ -7,8 +7,6 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',//passing data to state
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  // DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-  // GET_PHOTOS_BY_TOPIC: 'GET_PHOTOS_BY_TOPIC',
   CLOSE_MODAL: 'CLOSE_MODAL'
 };
 
@@ -25,10 +23,6 @@ const reducer = (state, action) => {
     return { ...state, topicData: action.payload.data };
   case ACTIONS.SELECT_PHOTO:
     return { ...state, selectedPhoto: action.payload.selectedPhoto, isModalOpen: true};
-  // case ACTIONS.DISPLAY_PHOTO_DETAILS:
-  //   return { ...state, isModalOpen: action.payload.isModalOpen };
-  // case ACTIONS.GET_PHOTOS_BY_TOPIC:
-  //   return { ...state, photoData: action.payload };
   case ACTIONS.CLOSE_MODAL:
     return { ...state, selectedPhoto:null, isModalOpen: action.payload.photoDetails };
   default:
@@ -87,14 +81,14 @@ const useApplicationData = (photos) => {
     dispatch({ type: ACTIONS.CLOSE_MODAL, payload: { selectedPhoto: null }});
   };
 
-  //update favourite photo ids
-  const updateToFavPhotoIds = (photoId) => {
-    if (state.favourites.includes(photoId)) {
-      dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { photoId } });
-    } else {
-      dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { photoId } });
-    }
-  };
+  //update favourite photo ids NOTE I forgot I have the favourites provider
+  // const updateToFavPhotoIds = (photoId) => {
+  //   if (state.favourites.includes(photoId)) {
+  //     dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { photoId } });
+  //   } else {
+  //     dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { photoId } });
+  //   }
+  // };
 
   return {
     state,
@@ -102,7 +96,7 @@ const useApplicationData = (photos) => {
     closeModal,
     getAllPhotos,
     onLoadTopic,
-    updateToFavPhotoIds
+    // updateToFavPhotoIds
   };
 };
 
