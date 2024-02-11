@@ -53,8 +53,21 @@ const useApplicationData = (photos) => {
   const getAllPhotos = () => {
     fetch(`/api/photos`)
       .then(res => res.json())
-      .then(photoData => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photoData}));
+      .then(photoData => {
+        console.log('photoData:', photoData);
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photoData});
+      });
   };
+
+  // const getAllPhotos = () => {
+  //   fetch(`/api/photos`)
+  //     .then(res => res.json())
+  //     .then(photoData => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photoData}));
+  // };
+
+  useEffect(() => {
+    getAllPhotos();
+  }, []);
 
   //Fetch All topics
   useEffect(() => {
@@ -71,10 +84,15 @@ const useApplicationData = (photos) => {
   };
 
   //open modal
-  const toggleModal = (photo) => {
+  const toggleModal = (id) => {
+    const selectedPhoto = state.photoData.find(photo => photo.id === id);
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { isModalOpen: true } });
-    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: photo } });
+    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto } });
   };
+  // const toggleModal = (photo) => {
+  //   dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { isModalOpen: true } });
+  //   dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: photo } });
+  // };
 
   //close modal
   const closeModal = () => {
@@ -83,6 +101,7 @@ const useApplicationData = (photos) => {
 
   return {
     state,
+    photos,
     photoDetails: state.photoDetails,
     favourites: state.favourites,
     toggleModal,

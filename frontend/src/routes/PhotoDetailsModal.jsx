@@ -36,12 +36,12 @@ const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
 The PhotoDetailsModal component's onClick handler calls the closeModal function, which dispatches an action to close the modal.
  */
 
-const PhotoDetailsModal = ({photoDetails, toggleFavourite, isModalOpen: isModalOpenProp, photos, dispatch: dispatchProp, handleClick}) => {
+const PhotoDetailsModal = ({photoDetails, toggleFavourite, isModalOpen, photos, dispatch, handleClick, props}) => {
 
   const {favourites, setFavourites} = useFavourites();
   const [displayAlert, setDisplayAlert] = useState(false);
-  const { state, dispatch } = useAppDataContext();
-  const { isModalOpen, selectedPhoto } = state;
+  const { state } = useAppDataContext();
+  const { selectedPhoto } = state;
 
   const { id } = photoDetails;
   // console.log(photoDetails);
@@ -50,7 +50,11 @@ const PhotoDetailsModal = ({photoDetails, toggleFavourite, isModalOpen: isModalO
   /**The handlePhotoSelect function is used to find the selected photo from the array of photos and dispatch an action to update the application's state with the selected photo's details. */
 
   const handlePhotoSelect = (id) => {
+    console.log('Selected photo id:', id);
+    console.log('Photos:', photos);
+    console.log('State before dispatch:', state);
     const selectedPhoto = photos.find(photo => photo.id === id);
+    console.log('Selected photo:', selectedPhoto);
     dispatch({
       type: ACTIONS.DISPLAY_PHOTO_DETAILS,
       payload: {
@@ -58,6 +62,7 @@ const PhotoDetailsModal = ({photoDetails, toggleFavourite, isModalOpen: isModalO
         selectedPhoto: selectedPhoto
       }
     });
+    console.log('State after dispatch:', state);
   };
 
   const closeModal = handleClick;

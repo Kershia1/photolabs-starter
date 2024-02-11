@@ -6,15 +6,17 @@ import '../styles/HomeRoute.scss';
 import { useFavourites } from 'components/FavouritesContext';
 import useApplicationData from 'hooks/useApplicationData';
 
-const HomeRoute = ({ photos, topics, getAllPhotos, getPhotosByTopic}) => {
-  const { state, toggleModal, closeModal } = useApplicationData(photos);
+const HomeRoute = () => {
+  console.log('state.photoData:', state.photoData);
+  console.log('state.TopicData:', state.TopicData);
+  const { state, toggleModal, closeModal } = useApplicationData();
   const { favourites } = useFavourites();
 
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} favouritesCount={favourites.length} getAllPhotos={state.getAllPhotos} getPhotosByTopic={state.getPhotosByTopic} />
-      <PhotoList photos={photos} handleClick={toggleModal} />
-      {state.isModalOpen && <PhotoDetailsModal photoId={state.selectedPhoto} closeModal={closeModal} />}
+      <TopNavigationBar topics={state.topicData} favouritesCount={favourites.length} />
+      <PhotoList photos={state.photoData} handleClick={toggleModal} />
+      {state.isModalOpen && <PhotoDetailsModal photos={state.photoData} photoId={state.selectedPhoto} closeModal={closeModal} />}
     </div>
   );
 };

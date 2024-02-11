@@ -18,6 +18,8 @@ const App = () => {
     getPhotosByTopic
   } = useApplicationData();
 
+  const photos = state.photoData;
+
   return (
     <FavouritesProvider>
       <HomeRoute
@@ -34,17 +36,3 @@ const App = () => {
 };
 
 export default App;
-
-//dead code
-/**        {/* {/* {state.isModalOpen && ()
-<PhotoDetailsModal
-// photoDetails={photoDetails}
-setPhotoDetails={onClosePhotoDetailsModal}
-handleClick={closeModal}
-toggleFavourite={updateToFavPhotoIds}
-isModalOpen={isModalOpen}
-toggleModal={toggleModal}
-/>
-)}
-</div>
-*/
