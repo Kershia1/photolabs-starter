@@ -70,7 +70,7 @@ const useApplicationData = (photos) => {
   };
 
   //open modal
-  const toggleModal = (id) => {
+  const onPhotoSelect = (id) => {
     const selectedPhoto = state.photoData.find(photo => photo.id === id);
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { isModalOpen: true } });
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto } });
@@ -92,7 +92,7 @@ const useApplicationData = (photos) => {
 
   return {
     state,
-    toggleModal,
+    onPhotoSelect,
     closeModal,
     getAllPhotos,
     onLoadTopic,

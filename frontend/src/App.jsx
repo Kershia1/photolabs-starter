@@ -11,7 +11,7 @@ import { FavouritesProvider } from './components/FavouritesContext';
 const App = () => {
   const {
     state,
-    toggleModal,
+    onPhotoSelect,
     closeModal,
     getAllPhotos,
     onLoadTopic,
@@ -27,7 +27,7 @@ const App = () => {
         <HomeRoute
           photos={state.photoData}
           topics={state.topicData}
-          toggleModal={toggleModal}
+          onPhotoSelectl={onPhotoSelect}
           isModalOpen={state.isModalOpen}
           closeModal={closeModal}
           getAllPhotos={getAllPhotos}
@@ -37,6 +37,7 @@ const App = () => {
           <PhotoDetailsModal
             photos={state.photoData}
             photoId={state.selectedPhoto}
+            onPhotoSelect={onPhotoSelect}
             closeModal={closeModal}
             // updateToFavPhotoIds={updateToFavPhotoIds}?
           />
