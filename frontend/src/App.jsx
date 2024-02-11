@@ -4,7 +4,7 @@ import React from 'react'; // Import the 'React' package
 import './App.scss';
 import useApplicationData from 'hooks/useApplicationData';
 import HomeRoute from 'routes/HomeRoute';
-import PhotoDetailsModal from 'components/PhotoDetailsModal';
+import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import { FavouritesProvider } from './components/FavouritesContext';
 
 // Note: Rendering a single component to build components in isolation
@@ -27,7 +27,7 @@ const App = () => {
         <HomeRoute
           photos={state.photoData}
           topics={state.topicData}
-          onPhotoSelectl={onPhotoSelect}
+          onPhotoSelect={onPhotoSelect}
           isModalOpen={state.isModalOpen}
           closeModal={closeModal}
           getAllPhotos={getAllPhotos}

@@ -5,7 +5,7 @@ import PhotoList from 'components/PhotoList';
 import '../styles/dataModal.scss';
 import { useFavourites } from 'components/FavouritesContext';
 
-const dataModal = ({ props }) => {
+const PhotoDetailsModal = ({ props }) => {
   const { selectedPhoto, closeModal, toggleFavourite } = props;
   const {favourites, setFavourites} = useFavourites();
 
@@ -47,7 +47,7 @@ const dataModal = ({ props }) => {
   );
 };
 
-export default dataModal;
+export default PhotoDetailsModal;
 
 //dead code
 /**The ModalPhotoFavButton component is a button that allows users to favorite a photo. It changes its appearance based on whether the photo is already favorited or not. The ModalPhotoFavButton component's handleClick function stops the click event from propagating up to the modal's onClick handler, which would close the modal. It then toggles the favorite status of the photo and toggles the display of an alert. */

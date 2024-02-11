@@ -3,8 +3,8 @@ import FavBadge from './FavBadge';
 import TopicList from './TopicList';
 import '../styles/TopNavigationBar.scss';
 
-const TopNavigation = ({ props }) => {
-  const { topics, onLoadTopic, favouritesCount } = props;
+const TopNavigation = ({ topics, onLoadTopic, favouritesCount }) => {
+  // const { topics, onLoadTopic, favouritesCount } = props;
   //not sure if I need to pass the prop favouritesCount here
 
   return (

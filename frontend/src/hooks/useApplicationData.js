@@ -30,7 +30,7 @@ const reducer = (state, action) => {
   }
 };
 
-const useApplicationData = (photos) => {
+const useApplicationData = () => {
   const initialState = {
     photoDetails: null,
     favourites: [],
@@ -66,14 +66,14 @@ const useApplicationData = (photos) => {
   const onLoadTopic = (id) => {
     fetch(`/api/topics/photos/${id}`)
       .then(res => res.json())
-      .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPIC, payload: data}));
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data}));
   };
 
   //open modal
-  const onPhotoSelect = (id) => {
-    const selectedPhoto = state.photoData.find(photo => photo.id === id);
-    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { isModalOpen: true } });
-    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto } });
+  const onPhotoSelect = (photo) => {
+    // const selectedPhoto = state.photoData.find(photo => photo.id === id);
+    // dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { isModalOpen: true } });
+    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: photo } });
   };
 
   //close modal
@@ -81,57 +81,13 @@ const useApplicationData = (photos) => {
     dispatch({ type: ACTIONS.CLOSE_MODAL, payload: { selectedPhoto: null }});
   };
 
-  //update favourite photo ids NOTE I forgot I have the favourites provider
-  // const updateToFavPhotoIds = (photoId) => {
-  //   if (state.favourites.includes(photoId)) {
-  //     dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { photoId } });
-  //   } else {
-  //     dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { photoId } });
-  //   }
-  // };
-
   return {
     state,
     onPhotoSelect,
     closeModal,
     getAllPhotos,
     onLoadTopic,
-    // updateToFavPhotoIds
   };
 };
 
 export default useApplicationData;
-
-//dead code
-
-//Store All Photo Data
-// useEffect(() => {
-//   getAllPhotos();
-// }, []);
-
-// useEffect(() => {
-//   if(state.topicData) {
-//     fetch(`/api/topics/photos/${state.topicData}`
-//     .then(res => res.json())
-//     .then(topicData =>dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: topicData}))
-//   }
-// }, [state.topicData]);
-
-// const toggleModal = (id) => {
-//   const selectedPhoto = photos.find(photo => photo.id === id);
-//   dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { isModalOpen: true } });
-//   dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto } });
-// };
-
-// const toggleFavourite = (photoId) => {
-//   if (state.favourites.includes(photoId)) {
-//     dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { photoId } });
-//   } else {
-//     dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { photoId } });
-//   }
-// };
-
-// const onClosePhotoDetailsModal = () => {
-//   dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { isModalOpen: false } });
-//   dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: null } });
-// };

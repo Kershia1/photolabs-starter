@@ -2,26 +2,17 @@ import React from "react";
 
 import "../styles/TopicListItem.scss";
 
-const TopicListItem = ({id, slug, label, onTopicSelect}) => {
+const TopicListItem = ({ props }) => {
+  const { data, onLoadTopic} = props;
   console.log('Topic Item Clicked');
-  const styledTopicListItem = {
-    lineHeight: '24px',
-    marginLeft: '24px',
-    textDecoration: 'none',
-  };
 
-  const styledTopicListSpan = {
-    fontSize: '18px',
-    textDecoration: 'none',
-    fontWeight: '500',
-    color: '#2b2b2b',
+  const handleTopicClick = () => {
+    onLoadTopic(data);
   };
 
   return (
-    <div className="topic-list__item" onClick={() => onTopicSelect(slug)}>
-      <a href={`/${slug}`} style={styledTopicListItem}>
-        <span style={styledTopicListSpan}>{label}</span>
-      </a>
+    <div className="topic-list__item">
+      <span onClick={handleTopicClick}>{data.title}</span>
     </div>
   );
 };

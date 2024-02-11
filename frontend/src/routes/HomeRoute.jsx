@@ -19,8 +19,3 @@ const HomeRoute = (props) => {
 };
 
 export default HomeRoute;
-
-//DeadCode   // console.log('state.photoData:', state.photoData);
-// console.log('state.TopicData:', state.TopicData);
-// const { state, toggleModal, closeModal } = useApplicationData();
-// lifted to app.jsx {state.isModalOpen && <PhotoDetailsModal photos={state.photoData} photoId={state.selectedPhoto} closeModal={closeModal} />}
