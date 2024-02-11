@@ -1,5 +1,11 @@
 
+import React from 'react'; // Import the 'React' package
+
 import './App.scss';
+import useApplicationData from 'hooks/useApplicationData';
+import HomeRoute from 'routes/HomeRoute';
+// import PhotoDetailsModal from 'components/PhotoDetailsModal';
+import { FavouritesProvider } from './components/FavouritesContext';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
@@ -7,20 +13,21 @@ const App = () => {
     state,
     toggleModal,
     isModalOpen,
-    updateToFavPhotoIds,
-    onClosePhotoDetailsModal,
-  } = useApplicationData(photos);
-
-  const [photoDetails, setPhotoDetails] = useState(false);
+    closeModal,
+    getAllPhotos,
+    getPhotosByTopic
+  } = useApplicationData();
 
   return (
     <FavouritesProvider>
-      <HomeRoute photos={photos}
-        topics={topics}
-        photoDetails={photoDetails}
-        setPhotoDetails={onClosePhotoDetailsModal}
-        toggleModal={toggleModal}
-        isModalOpen={isModalOpen}
+      <HomeRoute
+        photos={state.photoData}
+        topics={state.topicData}
+        handleClick={toggleModal}
+        isModalOpen={state.isModalOpen}
+        closeModal={closeModal}
+        getAllPhotos={getAllPhotos}
+        getPhotosByTopic={getPhotosByTopic}
       />
     </FavouritesProvider>
   );
@@ -28,32 +35,16 @@ const App = () => {
 
 export default App;
 
-
-// import React, { useState} from 'react';
-// import HomeRoute from 'routes/HomeRoute';
-// import { FavouritesProvider } from './components/FavouritesContext';
-// import { AppDataProvider } from 'context/AppDataContext';
-// import { useApplicationData } from 'hooks/useApplicationData';
-// import './App.scss';
-
-// // Note: Rendering a single component to build components in isolation
-// const App = () => {
-//   const { state, toggleModal, onClosePhotoDetailsModal, onTopicSelect } = useApplicationData();
-//   const [photoDetails, isModalOpen] = state;
-
-//   return (
-//     <FavouritesProvider>
-//       <AppDataProvider>
-//         <HomeRoute
-//           photoDetails={photoDetails}
-//           setPhotoDetails={onClosePhotoDetailsModal}
-//           toggleModal={toggleModal}
-//           isModalOpen={isModalOpen}
-//           onTopicSelect={onTopicSelect}
-//         />
-//       </AppDataProvider>
-//     </FavouritesProvider>
-//   );
-// };
-
-// export default App;
+//dead code
+/**        {/* {/* {state.isModalOpen && ()
+<PhotoDetailsModal
+// photoDetails={photoDetails}
+setPhotoDetails={onClosePhotoDetailsModal}
+handleClick={closeModal}
+toggleFavourite={updateToFavPhotoIds}
+isModalOpen={isModalOpen}
+toggleModal={toggleModal}
+/>
+)}
+</div>
+*/

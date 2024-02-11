@@ -5,6 +5,9 @@ import PhotoList from 'components/PhotoList';
 import { useFavourites } from 'components/FavouritesContext';
 import { useAppDataContext, ACTIONS } from 'context/AppDataContext';
 
+
+/**The ModalPhotoFavButton component is a button that allows users to favorite a photo. It changes its appearance based on whether the photo is already favorited or not. The ModalPhotoFavButton component's handleClick function stops the click event from propagating up to the modal's onClick handler, which would close the modal. It then toggles the favorite status of the photo and toggles the display of an alert. */
+
 const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
   const onClick = (e) => {
     e.stopPropagation();
@@ -25,16 +28,26 @@ const ModalPhotoFavButton = ({ like, handleClick, displayAlert }) => {
   );
 };
 
-const PhotoDetailsModal = ({photoDetails, handleClick, toggleFavourite, toggleModal, isModalOpen, photos, dispatch}) => {
-  // console.log(toggleModal);
-  // console.log("Modal Clicked");
+
+/**The PhotoDetailsModal component receives several props, including the details of the photo to be displayed, a function to handle clicks, a function to toggle the favorite status of a photo, a boolean indicating whether the modal is open, an array of photos, and a dispatch function for the application's context.
+ 
+ * The PhotoDetailsModal component uses the useFavourites hook to access the list of favorited photos and a function to set that list.
+
+The PhotoDetailsModal component's onClick handler calls the closeModal function, which dispatches an action to close the modal.
+ */
+
+const PhotoDetailsModal = ({photoDetails, toggleFavourite, isModalOpen: isModalOpenProp, photos, dispatch: dispatchProp, handleClick}) => {
+
   const {favourites, setFavourites} = useFavourites();
   const [displayAlert, setDisplayAlert] = useState(false);
   const { state, dispatch } = useAppDataContext();
   const { isModalOpen, selectedPhoto } = state;
 
   const { id } = photoDetails;
-  console.log(photoDetails);
+  // console.log(photoDetails);
+
+
+  /**The handlePhotoSelect function is used to find the selected photo from the array of photos and dispatch an action to update the application's state with the selected photo's details. */
 
   const handlePhotoSelect = (id) => {
     const selectedPhoto = photos.find(photo => photo.id === id);
@@ -47,32 +60,24 @@ const PhotoDetailsModal = ({photoDetails, handleClick, toggleFavourite, toggleMo
     });
   };
 
-  const closeModal = () => {
-    dispatch({ type: ACTIONS.TOGGLE_MODAL });
-  };
+  const closeModal = handleClick;
 
-if (!isModalOpen || !selectedPhoto) {
-  return null;
-}
+  if (!isModalOpen || !selectedPhoto) {
+    return null;
+  }
 
-  // const handleClose = () => {
-  //   dispatch({
-  //     type: ACTIONS.CLOSE_PHOTO_DETAILS,
-  //     payload: {
-  //       isModalOpen: false
-  //     }
-  //   });
-  // };
+
+  /*The useEffect hook is used to call the handlePhotoSelect function when the component is mounted. This ensures that the selected photo is displayed when the modal is opened. */
 
   // Call handlePhotoSelect when the component is mounted
   useEffect(() => {
-    handlePhotoSelect(selectedPhotoId);
-  }, []);
+    handlePhotoSelect(selectedPhoto.id);
+  }, [selectedPhoto]);
 
   return (
     <div className="photo-details-modal" onClick={closeModal}>
       {/* <div className="photo-details-modal" onClick={toggleModal}></div> */}
-      <button className="photo-details-modal__close-button" onClick={handleClose}>
+      <button className="photo-details-modal__close-button" onClick={closeModal}>
         <img src={closeSymbol} alt="close symbol"/>
       </button>
 
