@@ -12,6 +12,11 @@ const HomeRoute = (props) => {
 
   const { favourites } = useFavourites();
 
+  // Check if photos and topics are not undefined before rendering the components
+  if (!photos || !topics) {
+    return null;
+  }
+
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} onLoadTopic={onLoadTopic}favouritesCount={favourites.length} />
