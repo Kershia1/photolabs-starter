@@ -18,9 +18,8 @@ const App = () => {
     // updateToFavPhotoIds
   } = useApplicationData();
 
-  // const photos = state.photoData; don't see the need for this
+  console.log(state);
 
-  //lifiting state management to the top level for modal I wish I had left if here
   return (
     <div className="App">
       <FavouritesProvider>

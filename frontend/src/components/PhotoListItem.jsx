@@ -4,9 +4,11 @@ import "../styles/PhotoFavButton.scss";
 import PhotoFavButton from "./PhotoFavButton";
 import { useFavourites } from "./FavouritesContext";
 
-const PhotoListItem = ({ props}) => {
-  const { data, onPhotoSelect } = props;
+const PhotoListItem = ({ data, onPhotoSelect }) => {
+  // const { data, onPhotoSelect } = props;
   const { favourites, toggleFavourite } = useFavourites();
+
+  console.log(data);
 
   const toggleModal = () => {
     onPhotoSelect(data);

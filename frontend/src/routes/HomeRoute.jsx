@@ -8,6 +8,8 @@ import { useFavourites } from 'components/FavouritesContext';
 const HomeRoute = (props) => {
   const { topics, photos, onPhotoSelect, getAllPhotos, onLoadTopic } = props;
 
+  console.log(photos, topics);
+
   const { favourites } = useFavourites();
 
   return (

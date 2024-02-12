@@ -59,7 +59,13 @@ const useApplicationData = () => {
   useEffect(() => {
     fetch(`/api/topics`)
       .then(res => res.json())
-      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data}));
+      .then((data) => {
+        console.log('topicData:', data); // Log the data received from the API
+        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data });
+      })
+      .catch((error) => {
+        console.error('Error fetching topics:', error); // Log any errors that occur during the fetch
+      });
   }, []);
 
   //Fetch Photos By Topic

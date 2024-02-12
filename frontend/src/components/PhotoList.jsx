@@ -2,18 +2,18 @@ import React from "react";
 import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 
-const PhotoList = ({ props }) => {
-  //pass from direct parent
-  const photos = props.photos.map((photo) => {
+const PhotoList = ({ photos, onPhotoSelect }) => {
+  console.log(photos);
+  const photoItems = photos ? photos.map((photo) => {
     return (
       <PhotoListItem
         key={photo.id}
         data={photo}
-        onPhotoSelect={props.onPhotoSelect}
+        onPhotoSelect={onPhotoSelect}
       />
     );
-  });
-  return <ul className="photo-list">{photos}</ul>;
+  }) : [];
+  return <ul className="photo-list">{photoItems}</ul>;
   //move to here
 };
 

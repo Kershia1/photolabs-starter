@@ -4,7 +4,7 @@ import "../styles/TopicList.scss";
 
 
 const TopicList = ({ topics, onLoadTopic }) => {
-  const topicItems = topics.map((topic) => {
+  const topicItems = topics ? topics.map((topic) => {
     return (
       <TopicListItem
         key={topic.id}
@@ -12,7 +12,7 @@ const TopicList = ({ topics, onLoadTopic }) => {
         onLoadTopic={onLoadTopic}
       />
     );
-  });
+  }) : [];
   return <div className="top-nav-bar__topic-list">{topicItems}</div>;
 };
 
