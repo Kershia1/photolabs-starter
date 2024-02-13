@@ -35,7 +35,7 @@ const App = () => {
         {state.isModalOpen && (
           <PhotoDetailsModal
             photos={state.photoData}
-            photoId={state.selectedPhoto}
+            selectedPhoto={state.selectedPhoto}
             onPhotoSelect={onPhotoSelect}
             closeModal={closeModal}
             // updateToFavPhotoIds={updateToFavPhotoIds}?

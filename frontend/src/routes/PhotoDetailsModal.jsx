@@ -22,7 +22,8 @@ const PhotoDetailsModal = ({  selectedPhoto, closeModal, toggleFavourite }) => {
 
           <PhotoFavButton
             like={favourites.includes(selectedPhoto)}
-            handleClick={() => toggleFavourite(selectedPhoto)}
+            handleClick={() => toggleFavourite(selectedPhoto.id)}
+            // handleClick={() => toggleFavourite(selectedPhoto)}
             photo={selectedPhoto}
           />
 
@@ -40,7 +41,7 @@ const PhotoDetailsModal = ({  selectedPhoto, closeModal, toggleFavourite }) => {
         
           </div>
         </>
-      )};
+      )}
     </div>
   );
 };
