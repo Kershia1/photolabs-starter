@@ -5,8 +5,8 @@ import '../styles/HomeRoute.scss';
 import { useFavourites } from 'components/FavouritesContext';
 
 
-const HomeRoute = (props) => {
-  const { topics, photos, onPhotoSelect, getAllPhotos, onLoadTopic } = props;
+const HomeRoute = ({ topics, photos, onPhotoSelect, getAllPhotos, onLoadTopic }) => {
+  // const  = props;
 
   console.log(photos, topics);
 
