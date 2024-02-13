@@ -8,7 +8,7 @@ const PhotoListItem = ({ data, onPhotoSelect }) => {
   // const { data, onPhotoSelect } = props;
   const { favourites, toggleFavourite } = useFavourites();
 
-  console.log(data);
+  // console.log(data);
 
   const toggleModal = () => {
     onPhotoSelect(data);
@@ -31,7 +31,7 @@ const PhotoListItem = ({ data, onPhotoSelect }) => {
           <div className="photo-list__user-info">{data.user.name}</div>
           
           <div className="photo-list__user-location">
-            <div>{data.location.county}, {data.location.city}</div>
+            <div>{data.location.county} {data.location.city}</div>
           </div>
         </div>
       </div>
