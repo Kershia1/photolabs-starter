@@ -2,9 +2,9 @@ import React from "react";
 
 import "../styles/TopicListItem.scss";
 
-const TopicListItem = ({ props }) => {
-  const { data, onLoadTopic} = props;
-  console.log('Topic Item Clicked');
+const TopicListItem = ({ data, onLoadTopic }) => {
+  // const { } = props;
+  // console.log('Topic Item Clicked');
 
   const handleTopicClick = () => {
     onLoadTopic(data);

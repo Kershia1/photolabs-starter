@@ -3,7 +3,7 @@ import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 
 const PhotoList = ({ photos, onPhotoSelect }) => {
-  console.log(photos);
+  // console.log(photos);
   const photoItems = photos ? photos.map((photo) => {
     return (
       <PhotoListItem

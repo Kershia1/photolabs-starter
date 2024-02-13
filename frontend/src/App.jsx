@@ -18,7 +18,7 @@ const App = () => {
     // updateToFavPhotoIds
   } = useApplicationData();
 
-  console.log(state);
+  // console.log(state);
 
   return (
     <div className="App">

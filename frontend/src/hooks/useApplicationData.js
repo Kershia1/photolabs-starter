@@ -46,7 +46,7 @@ const useApplicationData = () => {
     fetch(`http://localhost:8001/api/photos`)
       .then(res => res.json())
       .then((data) => {
-        console.log('photoData:',data);
+        // console.log('photoData:',data);
         //disptach data to match reducer
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data } });
         //dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data}); //disptach's whole data obj to state
@@ -57,14 +57,12 @@ const useApplicationData = () => {
     getAllPhotos();
   }, []);
 
-
-
   //Fetch All topics
   useEffect(() => {
-    fetch(`/api/topics`)
+    fetch(`http://localhost:8001/api/topics`)
       .then(res => res.json())
       .then((data) => {
-        console.log('topicData:', data); // Log the data received from the API
+        // console.log('topicData:', data); // Log the data received from the API
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { data } });
       })
       .catch((error) => {
@@ -74,7 +72,7 @@ const useApplicationData = () => {
 
   //Fetch Photos By Topic
   const onLoadTopic = (id) => {
-    fetch(`/api/topics/photos/${id}`)
+    fetch(`http://localhost:8001/api/topics${id}`)
       .then(res => res.json())
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data}));
   };
