@@ -1,13 +1,7 @@
 # react-photolabs
 This fullstack web app was developed using ReactJs, ExpressJs, PostGresSQL, and NodeJs.
 
-I was tasked with finishing Photolabs from a pre-made architecture where basic styling and layout had already been created. I was given the opportunity to display my skills with: 
-
--API and JSON use
--Object manipulation
--Creating custom hooks 
--State management via useEffect, useContext, and useReducer
--Managing both a backend and frontend server
+I was tasked with finishing Photolabs from a pre-made architecture where basic styling and layout had already been created. I was given the opportunity to display my skills with: API and JSON use, object manipulation, creating custom hooks, state management via useEffect, useContext, and useReducer, managing both a backend and frontend server to return API requests.
 
 
 # Photolabs
@@ -36,11 +30,16 @@ npm start
 ## Preview
 
 ### Main Page
+![Main Page](https://github.com/Kershia1/photolabs-starter/blob/main/frontend/docs/PhotoLabs.png?raw=true)
 
 ### Liked Photos
+![Like Photos](https://github.com/Kershia1/photolabs-starter/blob/main/frontend/docs/Liked-Photos.png?raw=true)
 
 ### Opened Modal 
+![Opened Modal](https://github.com/Kershia1/photolabs-starter/blob/main/frontend/docs/Opened-Modal.png?raw=true)
 
 ### Similar Photos in Modal 
+![Similar Photos](https://github.com/Kershia1/photolabs-starter/blob/main/frontend/docs/Similar-Photos-Modal.png?raw=true)
 
 ### Photos Filtered By Topic 
+![Photos Filtered By Topic](https://github.com/Kershia1/photolabs-starter/blob/main/frontend/docs/Filter-Topic.png?raw=true)
