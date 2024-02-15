@@ -76,7 +76,6 @@ const useApplicationData = () => {
   };
 
   const onPhotoSelect = (photo) => {
-    console.log('photo:', photo);
     if (photo.similar_photos) {
       dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: photo } });
     }
