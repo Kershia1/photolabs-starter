@@ -3,11 +3,10 @@ import React from "react";
 import "../styles/TopicListItem.scss";
 
 const TopicListItem = ({ data, onLoadTopic }) => {
-  // const { } = props;
-  // console.log('Topic Item Clicked');
 
   const handleTopicClick = () => {
-    onLoadTopic(data);
+    //changing to data.id from wntire data obj
+    onLoadTopic(data.id);
   };
 
   return (

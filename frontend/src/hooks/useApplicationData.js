@@ -62,7 +62,7 @@ const useApplicationData = () => {
     fetch(`http://localhost:8001/api/topics`)
       .then(res => res.json())
       .then((data) => {
-        // console.log('topicData:', data); // Log the data received from the API
+        console.log('topicData:', data); // Log the data received from the API
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { data } });
       })
       .catch((error) => {
@@ -71,12 +71,14 @@ const useApplicationData = () => {
   }, []);
 
   //Fetch Photos By Topic
-  const onLoadTopic = (id) => {
-    fetch(`http://localhost:8001/api/topics${id}`)
+  const onLoadTopic = (topicId) => {
+    fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
       .then(res => res.json())
-      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data}));
+      .then((data) => {
+        console.log(data); // Log the data here
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data } });
+      });
   };
-
 
   const onPhotoSelect = (photo) => {
     console.log('photo:', photo);
