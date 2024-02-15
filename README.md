@@ -6,7 +6,7 @@ I was tasked with finishing Photolabs from a pre-made architecture where basic s
 -API and JSON use
 -Object manipulation
 -Creating custom hooks 
--State management vis useEffect, useContext, and useReducer
+-State management via useEffect, useContext, and useReducer
 -Managing both a backend and frontend server
 
 
