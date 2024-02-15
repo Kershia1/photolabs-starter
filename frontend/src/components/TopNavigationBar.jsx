@@ -11,6 +11,7 @@ const TopNavigation = ({ topics, onLoadTopic, favouritesCount }) => {
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <TopicList topics={topics} onLoadTopic={onLoadTopic} />
+      {/* <span>Test words</span> */}
       <FavBadge count={favouritesCount} />
     </div>
   );

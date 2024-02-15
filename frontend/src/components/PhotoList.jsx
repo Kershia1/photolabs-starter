@@ -3,7 +3,7 @@ import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 
 const PhotoList = ({ photos, onPhotoSelect }) => {
-  // console.log(photos);
+
   const photoItems = photos ? photos.map((photo) => {
     return (
       <PhotoListItem
@@ -14,7 +14,6 @@ const PhotoList = ({ photos, onPhotoSelect }) => {
     );
   }) : [];
   return <ul className="photo-list">{photoItems}</ul>;
-  //move to here
 };
 
 export default PhotoList;

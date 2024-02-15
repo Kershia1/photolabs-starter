@@ -1,13 +1,11 @@
 
-import React from 'react'; // Import the 'React' package
-
+import React from 'react';
 import './App.scss';
 import useApplicationData from 'hooks/useApplicationData';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import { FavouritesProvider } from './components/FavouritesContext';
 
-// Note: Rendering a single component to build components in isolation
 const App = () => {
   const {
     state,
@@ -15,10 +13,13 @@ const App = () => {
     closeModal,
     getAllPhotos,
     onLoadTopic,
-    // updateToFavPhotoIds
   } = useApplicationData();
 
-  // console.log(state);
+  let similarPhotos = [];
+  if (state.selectedPhoto && state.selectedPhoto.similar_photos) {
+    const similarPhotoIds = state.selectedPhoto.similar_photos.map(photo => photo.id);
+    similarPhotos = state.photoData.filter(photo => similarPhotoIds.includes(photo.id));
+  }
 
   return (
     <div className="App">
@@ -34,11 +35,10 @@ const App = () => {
         />
         {state.isModalOpen && (
           <PhotoDetailsModal
-            photos={state.photoData}
+            photos={similarPhotos}
             selectedPhoto={state.selectedPhoto}
             onPhotoSelect={onPhotoSelect}
             closeModal={closeModal}
-            // updateToFavPhotoIds={updateToFavPhotoIds}?
           />
         )}
       </FavouritesProvider>

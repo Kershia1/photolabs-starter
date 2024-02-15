@@ -5,7 +5,7 @@ import PhotoList from 'components/PhotoList';
 import '../styles/PhotoDetailsModal.scss';
 import { useFavourites } from 'components/FavouritesContext';
 
-const PhotoDetailsModal = ({  selectedPhoto, closeModal, toggleFavourite }) => {
+const PhotoDetailsModal = ({ photos, selectedPhoto, closeModal, onPhotoSelect }) => {
   const { favourites } = useFavourites();
 
   const selectCloseModal = () => {
@@ -13,36 +13,53 @@ const PhotoDetailsModal = ({  selectedPhoto, closeModal, toggleFavourite }) => {
   };
 
   return (
-    <div className="photo-details-modal">
-      {selectedPhoto && (
-        <>
-          <button className="photo-details-modal__close-button" onClick={selectCloseModal}>
-            <img src={closeSymbol} alt="close symbol"/>
-          </button>
-
+    selectedPhoto && (
+      <div className="photo-details-modal">
+        {/* close button */}
+        <button className="photo-details-modal__close-button">
+          <img src={closeSymbol} alt="close symbol" onClick={selectCloseModal} />
+        </button>
+        {/* the photo */}
+        <div className="photo-details-modal__images">
           <PhotoFavButton
-            like={favourites.includes(selectedPhoto)}
-            handleClick={() => toggleFavourite(selectedPhoto.id)}
-            // handleClick={() => toggleFavourite(selectedPhoto)}
             photo={selectedPhoto}
+            like={favourites.includes(selectedPhoto.id)}
           />
-
-          <img className="photo-details-modal__image" src={selectedPhoto.urls.regular} alt={selectedPhoto.user.name} />
-
+          <img
+            src={selectedPhoto.urls.full}
+            alt="Image"
+            className="photo-details-modal__image"
+          />
+          {/* photographer details */}
           <div className="photo-details-modal__photographer-details">
-            <img className="photo-details-modal__photographer-profile" src={selectedPhoto.user.profile} alt={selectedPhoto.user.name} />
-            <div className="photo-details-modal__user-info">{selectedPhoto.user.name}</div>
+            <img
+              src={selectedPhoto.user.profile}
+              alt="Photographer"
+              className="photo-details-modal__photographer-profile"
+            />
+            <div className="photo-details-modal__photographer-info">
+              <div className="photo-details-modal__photographer-name">
+                {selectedPhoto.user.name}
+              </div>
+              <div className="photo-details-modal__photographer-location">
+                {selectedPhoto.location.city}, {selectedPhoto.location.country}
+              </div>
+            </div>
           </div>
-
-          <div>{selectedPhoto.location.city}, {selectedPhoto.location.country}</div>
-          <div className="photo-details-modal__header">Similar Photos</div>
-          <div className="photo-details-modal__images">
-            {selectedPhoto.similarPhotos ? <PhotoList photos={Object.values(selectedPhoto.similarPhotos)} /> : null}
-        
-          </div>
-        </>
-      )}
-    </div>
+        </div>
+  
+        {/* similar images */}
+        <div className="photo-details-modal__images">
+          <h2 className="photo-details-modal__header">Similar Photos</h2>
+        </div>
+        {photos && (
+          <PhotoList
+            photos={photos}
+            onPhotoSelect={onPhotoSelect}
+          />
+        )}
+      </div>
+    )
   );
 };
 

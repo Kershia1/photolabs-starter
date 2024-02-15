@@ -77,11 +77,14 @@ const useApplicationData = () => {
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data}));
   };
 
-  //open modal
+
   const onPhotoSelect = (photo) => {
-    // const selectedPhoto = state.photoData.find(photo => photo.id === id);
-    // dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { isModalOpen: true } });
-    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: photo } });
+    console.log('photo:', photo);
+    if (photo.similar_photos) {
+      console.log('photo.similar_photos:', photo.similar_photos);
+      // Dispatch the SELECT_PHOTO action
+      dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: photo } });
+    }
   };
 
   //close modal
@@ -94,7 +97,7 @@ const useApplicationData = () => {
     onPhotoSelect,
     closeModal,
     getAllPhotos,
-    onLoadTopic,
+    onLoadTopic
   };
 };
 
