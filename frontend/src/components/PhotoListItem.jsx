@@ -15,7 +15,7 @@ const PhotoListItem = ({ data, onPhotoSelect }) => {
     <section className="photo-list__item">
       <PhotoFavButton
         like={favourites.includes(data.id)}
-        handleClick={() => toggleFavourite(data.id)}
+        onFavClick={() => toggleFavourite(data.id)}
         photo={data}
       />
   
@@ -38,3 +38,13 @@ const PhotoListItem = ({ data, onPhotoSelect }) => {
 
 export default PhotoListItem;
 
+{/* <PhotoFavButton
+photo={selectedPhoto}
+onFavClick={() => toggleFavourite(selectedPhoto.id)}
+like={favourites.includes(selectedPhoto.id)}
+/>
+ handleClick={() => toggleFavourite(data.id)}
+changing the above code to the below code
+ onFavClick={() => toggleFavourite(data.id)}
+
+*/}

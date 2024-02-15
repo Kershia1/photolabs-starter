@@ -6,7 +6,8 @@ import '../styles/PhotoDetailsModal.scss';
 import { useFavourites } from 'components/FavouritesContext';
 
 const PhotoDetailsModal = ({ photos, selectedPhoto, closeModal, onPhotoSelect }) => {
-  const { favourites } = useFavourites();
+  const { favourites, toggleFavourite } = useFavourites();
+  //to toggle the favourite button and add to the favourites list
 
   const selectCloseModal = () => {
     closeModal();
@@ -23,6 +24,7 @@ const PhotoDetailsModal = ({ photos, selectedPhoto, closeModal, onPhotoSelect })
         <div className="photo-details-modal__images">
           <PhotoFavButton
             photo={selectedPhoto}
+            onFavClick={() => toggleFavourite(selectedPhoto.id)}
             like={favourites.includes(selectedPhoto.id)}
           />
           <img

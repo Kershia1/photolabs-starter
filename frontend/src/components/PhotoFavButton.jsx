@@ -3,8 +3,11 @@ import React, { useCallback, useState } from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-const PhotoFavButton = ({ like, handleClick }) => {
-  //take in passed down props from PhotoListItem
+const PhotoFavButton = ({ like, onFavClick}) => {
+  //replacing handleClick with onFavClick
+  const handleClick = () => {
+    onFavClick();
+  };
 
   return (
     <div className="photo-list__fav-icon" onClick={handleClick}>
