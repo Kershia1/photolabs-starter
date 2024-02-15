@@ -5,7 +5,6 @@ import "../styles/TopicListItem.scss";
 const TopicListItem = ({ data, onLoadTopic }) => {
 
   const handleTopicClick = () => {
-    //changing to data.id from wntire data obj
     onLoadTopic(data.id);
   };
 

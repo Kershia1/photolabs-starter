@@ -7,7 +7,6 @@ import { useFavourites } from 'components/FavouritesContext';
 
 const PhotoDetailsModal = ({ photos, selectedPhoto, closeModal, onPhotoSelect }) => {
   const { favourites, toggleFavourite } = useFavourites();
-  //to toggle the favourite button and add to the favourites list
 
   const selectCloseModal = () => {
     closeModal();

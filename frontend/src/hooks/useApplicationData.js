@@ -4,7 +4,7 @@ import { useReducer, useEffect } from "react";
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
-  SET_PHOTO_DATA: 'SET_PHOTO_DATA',//passing data to state
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
   CLOSE_MODAL: 'CLOSE_MODAL'
@@ -46,10 +46,7 @@ const useApplicationData = () => {
     fetch(`http://localhost:8001/api/photos`)
       .then(res => res.json())
       .then((data) => {
-        // console.log('photoData:',data);
-        //disptach data to match reducer
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data } });
-        //dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data}); //disptach's whole data obj to state
       });
   };
 
@@ -62,11 +59,11 @@ const useApplicationData = () => {
     fetch(`http://localhost:8001/api/topics`)
       .then(res => res.json())
       .then((data) => {
-        console.log('topicData:', data); // Log the data received from the API
+        console.log('topicData:', data);
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { data } });
       })
       .catch((error) => {
-        console.error('Error fetching topics:', error); // Log any errors that occur during the fetch
+        console.error('Error fetching topics:', error);
       });
   }, []);
 
@@ -75,7 +72,7 @@ const useApplicationData = () => {
     fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
       .then(res => res.json())
       .then((data) => {
-        console.log(data); // Log the data here
+        console.log(data);
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data } });
       });
   };
@@ -84,7 +81,6 @@ const useApplicationData = () => {
     console.log('photo:', photo);
     if (photo.similar_photos) {
       console.log('photo.similar_photos:', photo.similar_photos);
-      // Dispatch the SELECT_PHOTO action
       dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: photo } });
     }
   };

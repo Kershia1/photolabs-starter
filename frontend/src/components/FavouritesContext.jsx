@@ -23,5 +23,4 @@ export const FavouritesProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use the favourites state
 export const useFavourites = () => useContext(FavouritesContext);

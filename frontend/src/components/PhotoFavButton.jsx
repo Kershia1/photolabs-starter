@@ -4,7 +4,6 @@ import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 const PhotoFavButton = ({ like, onFavClick}) => {
-  //replacing handleClick with onFavClick
   const handleClick = () => {
     onFavClick();
   };
