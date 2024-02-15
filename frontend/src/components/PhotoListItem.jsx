@@ -25,12 +25,12 @@ const PhotoListItem = ({ data, onPhotoSelect }) => {
         <img className="photo-list__user-profile" src={data.user.profile}/>
 
         <div className="photo-list__user-info-container">
-          <div className="photo-list__user-info">{data.user.name}</div>
-          
+          <div className="photo-list__user-info"> {data.user.name} </div>
           <div className="photo-list__user-location">
-            <div>{data.location.county} {data.location.city}</div>
+            {data.location.city}, {data.location.country}
           </div>
         </div>
+        
       </div>
     </section>
   );

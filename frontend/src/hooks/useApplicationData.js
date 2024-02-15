@@ -59,7 +59,6 @@ const useApplicationData = () => {
     fetch(`http://localhost:8001/api/topics`)
       .then(res => res.json())
       .then((data) => {
-        console.log('topicData:', data);
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { data } });
       })
       .catch((error) => {
@@ -72,7 +71,6 @@ const useApplicationData = () => {
     fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
       .then(res => res.json())
       .then((data) => {
-        console.log(data);
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { data } });
       });
   };
@@ -80,7 +78,6 @@ const useApplicationData = () => {
   const onPhotoSelect = (photo) => {
     console.log('photo:', photo);
     if (photo.similar_photos) {
-      console.log('photo.similar_photos:', photo.similar_photos);
       dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { selectedPhoto: photo } });
     }
   };
